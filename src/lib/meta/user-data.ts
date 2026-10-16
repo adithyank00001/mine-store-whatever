@@ -1,0 +1,325 @@
+import "server-only";
+
+import { createHash } from "node:crypto";
+
+/**
+ * Customer match fields for Meta CAPI (hashed after normalize).
+ */
+export type MetaCustomerInfo = {
+  email?: string | null;
+  /** E.164-ish digits preferred (e.g. 9198xxxxxxxx). Hashed as Meta `ph`. */
+  phone?: string | null;
+  fullName?: string | null;
+  country?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  /** Raw IDs (Dodo customer_id, app user_id). Hashed before send. */
+  externalIds?: string[] | null;
+};
+
+export type MetaBillingAddress = {
+  country?: string | null;
+  city?: string | null;
+  state?: string | null;
+  street?: string | null;
+  zipcode?: string | null;
+};
+
+function sha256Hex(value: string): string {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function hashNormalized(value: string | undefined): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+  return sha256Hex(value);
+}
+
+/** Lowercase, trim, drop punctuation (keeps letters/numbers; UTF-8 ok). */
+function normalizeNamePart(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "");
+}
+
+/** Lowercase, no spaces/punctuation (Meta city rules). */
+function normalizeCity(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "");
+}
+
+/** Lowercase, no spaces/punctuation (US 2-letter preferred when available). */
+function normalizeState(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "");
+}
+
+/** Lowercase, no spaces/dashes; US → first 5 digits when numeric. */
+function normalizeZip(value: string, countryCode?: string): string {
+  const cleaned = value.trim().toLowerCase().replace(/[\s-]+/g, "");
+  if ((countryCode === "us" || countryCode === "usa") && /^\d{5}/.test(cleaned)) {
+    return cleaned.slice(0, 5);
+  }
+  return cleaned;
+}
+
+/** ISO 3166-1 alpha-2 lowercase when possible. */
+function normalizeCountry(value: string): string | undefined {
+  const trimmed = value.trim().toLowerCase();
+  if (!trimmed) {
+    return undefined;
+  }
+  if (/^[a-z]{2}$/.test(trimmed)) {
+    return trimmed;
+  }
+  const aliases: Record<string, string> = {
+    "united states": "us",
+    usa: "us",
+    "united arab emirates": "ae",
+    uae: "ae",
+    "united kingdom": "gb",
+    uk: "gb",
+    india: "in",
+  };
+  return aliases[trimmed] ?? (trimmed.length === 2 ? trimmed : undefined);
+}
+
+function normalizeEmail(email: string): string | undefined {
+  const normalized = email.trim().toLowerCase();
+  if (!normalized.includes("@")) {
+    return undefined;
+  }
+  return normalized;
+}
+
+/**
+ * Meta `ph`: digits only, with country code, no +/spaces/leading zeros.
+ * Indian 10-digit mobiles → prefix 91.
+ */
+export function normalizePhoneForMeta(phone: string): string | undefined {
+  let digits = phone.replace(/\D/g, "");
+  if (!digits) return undefined;
+
+  // 0091… / 091…
+  digits = digits.replace(/^00+/, "");
+  if (digits.startsWith("0") && digits.length >= 11) {
+    digits = digits.replace(/^0+/, "");
+  }
+
+  // Local Indian mobile: 10 digits starting 6–9
+  if (/^[6-9]\d{9}$/.test(digits)) {
+    digits = `91${digits}`;
+  }
+
+  // Too short / too long after normalize
+  if (digits.length < 10 || digits.length > 15) {
+    return undefined;
+  }
+
+  return digits;
+}
+
+/** Meta recommends hashing external_id; normalize then SHA-256. */
+function normalizeExternalId(value: string): string | undefined {
+  const normalized = value.trim().toLowerCase();
+  return normalized || undefined;
+}
+
+function namePartCount(name: string): number {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((part) => part.trim())
+    .filter(Boolean).length;
+}
+
+/**
+ * Prefer the richer name for Meta fn/ln splitting.
+ * Example: customer "dsfsdg" + card "Priya Sharma" → "Priya Sharma"
+ */
+export function pickBestFullName(
+  customerName?: string | null,
+  cardHolderName?: string | null,
+): string | null {
+  const candidates = [customerName, cardHolderName]
+    .map((value) => (typeof value === "string" ? value.trim() : ""))
+    .filter(Boolean);
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  candidates.sort((a, b) => {
+    const partDiff = namePartCount(b) - namePartCount(a);
+    if (partDiff !== 0) {
+      return partDiff;
+    }
+    return b.length - a.length;
+  });
+
+  return candidates[0] ?? null;
+}
+
+export function collectExternalIds(input: {
+  dodoCustomerId?: string | null;
+  userId?: string | null;
+}): string[] {
+  const ids: string[] = [];
+  const seen = new Set<string>();
+
+  for (const raw of [input.dodoCustomerId, input.userId]) {
+    if (typeof raw !== "string") {
+      continue;
+    }
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      continue;
+    }
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    ids.push(trimmed);
+  }
+
+  return ids;
+}
+
+/**
+ * Split a full name for Meta fn / ln.
+ * Meta only has first + last (no middle-name field).
+ */
+export function splitFullName(fullName: string | null | undefined): {
+  firstName?: string;
+  lastName?: string;
+} {
+  if (!fullName?.trim()) {
+    return {};
+  }
+
+  const parts = fullName
+    .trim()
+    .split(/\s+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return {};
+  }
+  if (parts.length === 1) {
+    return { firstName: parts[0] };
+  }
+
+  return {
+    firstName: parts[0],
+    lastName: parts[parts.length - 1],
+  };
+}
+
+export function metaCustomerInfoFromDodo(input: {
+  email?: string | null;
+  name?: string | null;
+  cardHolderName?: string | null;
+  billing?: MetaBillingAddress | null;
+  dodoCustomerId?: string | null;
+  userId?: string | null;
+}): MetaCustomerInfo {
+  const externalIds = collectExternalIds({
+    dodoCustomerId: input.dodoCustomerId,
+    userId: input.userId,
+  });
+
+  return {
+    email: input.email ?? null,
+    fullName: pickBestFullName(input.name, input.cardHolderName),
+    country: input.billing?.country ?? null,
+    city: input.billing?.city ?? null,
+    state: input.billing?.state ?? null,
+    zip: input.billing?.zipcode ?? null,
+    ...(externalIds.length > 0 ? { externalIds } : {}),
+  };
+}
+
+/**
+ * Build Meta user_data customer fields (hashed). Does not include IP/UA/fbp/fbc.
+ */
+export function buildHashedCustomerUserData(
+  info: MetaCustomerInfo | null | undefined,
+): Record<string, string | string[]> {
+  if (!info) {
+    return {};
+  }
+
+  const userData: Record<string, string | string[]> = {};
+
+  const email = info.email ? normalizeEmail(info.email) : undefined;
+  const hashedEmail = hashNormalized(email);
+  if (hashedEmail) {
+    userData.em = [hashedEmail];
+  }
+
+  const phone = info.phone ? normalizePhoneForMeta(info.phone) : undefined;
+  const hashedPhone = hashNormalized(phone);
+  if (hashedPhone) {
+    userData.ph = [hashedPhone];
+  }
+
+  const { firstName, lastName } = splitFullName(info.fullName);
+  const hashedFn = hashNormalized(
+    firstName ? normalizeNamePart(firstName) : undefined,
+  );
+  const hashedLn = hashNormalized(
+    lastName ? normalizeNamePart(lastName) : undefined,
+  );
+  if (hashedFn) {
+    userData.fn = [hashedFn];
+  }
+  if (hashedLn) {
+    userData.ln = [hashedLn];
+  }
+
+  const country = info.country ? normalizeCountry(info.country) : undefined;
+  const hashedCountry = hashNormalized(country);
+  if (hashedCountry) {
+    userData.country = [hashedCountry];
+  }
+
+  const city = info.city?.trim() ? normalizeCity(info.city) : undefined;
+  const hashedCity = hashNormalized(city || undefined);
+  if (hashedCity) {
+    userData.ct = [hashedCity];
+  }
+
+  const state = info.state?.trim() ? normalizeState(info.state) : undefined;
+  const hashedState = hashNormalized(state || undefined);
+  if (hashedState) {
+    userData.st = [hashedState];
+  }
+
+  const zipRaw = info.zip?.trim();
+  const zip = zipRaw ? normalizeZip(zipRaw, country) : undefined;
+  const hashedZip = hashNormalized(zip || undefined);
+  if (hashedZip) {
+    userData.zp = [hashedZip];
+  }
+
+  const hashedExternalIds = (info.externalIds ?? [])
+    .map((id) => hashNormalized(normalizeExternalId(id)))
+    .filter((value): value is string => Boolean(value));
+
+  if (hashedExternalIds.length === 1) {
+    userData.external_id = hashedExternalIds[0];
+  } else if (hashedExternalIds.length > 1) {
+    userData.external_id = hashedExternalIds;
+  }
+
+  return userData;
+}
