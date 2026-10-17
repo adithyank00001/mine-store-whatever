@@ -968,9 +968,9 @@ export function ProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
-            <p className="text-center text-[11px] sm:text-xs font-black tracking-tight text-red-600 flex items-center justify-center gap-1 leading-tight">
-              <span className="shrink-0" aria-hidden="true">⚠️</span>
-              <span>Stop your kid&apos;s screen addiction before it&apos;s too late. Get It Now</span>
+            <p className="text-center text-sm sm:text-base font-black tracking-tight text-red-600 flex items-center justify-center gap-1.5 leading-tight">
+              <span className="shrink-0 text-sm sm:text-base" aria-hidden="true">⚠️</span>
+              <span>Stop your kid&apos;s screen addiction before it&apos;s too late.</span>
             </p>
             <StoreBuyCtaButton
               onClick={() => void handleBuy()}

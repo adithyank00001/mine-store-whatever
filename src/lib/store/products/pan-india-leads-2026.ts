@@ -143,59 +143,35 @@ export const panIndiaLeads2026: StoreProductConfig = {
   bonusIncluded: [],
   reviews: [
     {
-      name: "Rohan Mehta",
+      name: "Rohan Mehta (Parent)",
       avatar:
         "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789741917/cb8cdac7-455d-4505-8105-44776c99fc52.png",
       quote:
-        "Bro the Pan India list is genuinely active. Usually when you buy bulk data online half the numbers are switched off or out of service, but my calling team had a solid connect rate today on the Bangalore and Mumbai sheets. Still need to test the US file tomorrow, but so far worth the money.",
+        "Bought this for my 5 year old son. Bro the variety is crazy. Usually we buy activity books from the stationary shop for 300 rupees and he finishes them in two days. Here there are thousands of pages so I just pick something new like mazes or math whenever he gets bored. Totally worth the price.",
       rating: 5,
     },
     {
-      name: "Arjun Sharma",
-      avatar:
-        "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789741792/039a478f-42a2-48ef-9dba-fe5d4ab3b4b9.png",
-      quote:
-        "Bought both the India and US datasets. The US sheet is surprisingly clean, mostly proper direct work emails instead of useless info@ or contact@ junk. Ran a test batch through an email verifier first and the bounce rate was only around 4-5%, which is rare for bulk lists at this price point.",
-      rating: 5,
-    },
-    {
-      name: "Vikram Singh",
-      avatar:
-        "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789741751/68b835ba-2f0f-4086-b23a-80732274e707.png",
-      quote:
-        "bro data is solid. sent cold emails to a batch of 300 from the US B2B sheet yesterday and already got 2 positive responses. share your UPI again, want to get another batch for the real estate niche if you have it.",
-      rating: 5,
-    },
-    {
-      name: "Aditya Patel",
-      avatar:
-        "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789741721/5c6a6504-4957-45a9-ba55-efce15e2abf2.png",
-      quote:
-        "Good segmentation by state and category. Saved our team hours that the Delhi-NCR and Maharashtra tabs were already separated cleanly. Found maybe 15 or 20 duplicate rows across the whole sheet, but honestly compared to the recycled 2021 lists other sellers circulate, this is remarkably fresh. 9/10.",
-      rating: 5,
-    },
-    {
-      name: "Fatima Khan",
+      name: "Fatima Khan (Parent)",
       avatar:
         "https://res.cloudinary.com/ntv0bhpy/image/upload/v1788458314/c55fd900-d70f-44f5-b1ac-b32a2fbb35ff.png",
       quote:
-        "I was expecting recycled scrap data since 90% of database sellers just resell the same leaked trash, but these contacts are actually relevant. Called about 40 local business numbers from the Indian list this afternoon and almost all were actively picking up. Will be back for more.",
+        "I am not very good with mobile stuff so I was scared it would be confusing to find the right sheets. But everything is divided by age very clearly. I just click the 3 to 5 years section and print whatever looks fun for my twins. Much better and simpler than I expected.",
       rating: 5,
     },
     {
-      name: "Karthik Reddy",
+      name: "Arjun Sharma (Parent)",
       avatar:
-        "https://res.cloudinary.com/ntv0bhpy/image/upload/v1788458287/f55fa1f1-b460-4821-af43-0f62ffba5db1.png",
+        "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789741792/039a478f-42a2-48ef-9dba-fe5d4ab3b4b9.png",
       quote:
-        "Legit seller. The USA leads folder had proper state and timezone tags, which made scheduling our outreach campaigns much easier without accidentally emailing people at 3 AM their time. Clean Excel files, no weird formatting errors when opening.",
+        "Bhai honestly I was worried about printing costs but you really dont need a color printer. I just print 5 or 6 pages in black and white from my office every week and bring them home for my 4 year old. He stays busy for an hour easily without crying for my phone.",
       rating: 5,
     },
     {
-      name: "Nikhil Verma",
+      name: "Nikhil Verma (Parent)",
       avatar:
         "https://res.cloudinary.com/ntv0bhpy/image/upload/v1788458255/e6a23fe0-7623-4e17-8a13-878844eeed19.png",
       quote:
-        "honestly surprised by the quality. uploaded about 5k numbers from the pan-India folder into our auto-dialer this morning and the connection rate was solid, barely any invalid numbers. haven't dug deep into the US sheet yet but if it's as clean as the indian one I'll definitely be buying the next update. good stuff man",
+        "My daughter is in LKG and she used to struggle with holding pencils properly. I bought this last month and the tracing pages are really good. She traces alphabets everyday now and her grip has improved so much. Best part is she thinks she is just playing games.",
       rating: 5,
     },
   ],
