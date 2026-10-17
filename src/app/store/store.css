@@ -307,20 +307,23 @@
 }
 
 .store-compare {
-  padding-bottom: 0.35rem;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--store-muted);
   text-decoration: line-through;
 }
 
 .store-save {
-  margin-bottom: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
-  background: var(--store-soft);
-  color: var(--store-accent-deep);
-  padding: 0.2rem 0.65rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
 }
 
 .store-offer-note {
@@ -333,12 +336,15 @@
 .store-offer-timer {
   margin-top: 0.85rem;
   max-width: 22rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .store-offer-timer-title {
   font-size: 0.95rem;
   font-weight: 700;
   color: #b42318;
+  text-align: center;
 }
 
 .store-offer-timer-label {
@@ -346,6 +352,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--store-muted);
+  text-align: center;
 }
 
 .store-offer-timer-licenses {
@@ -353,6 +360,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #4b5563;
+  text-align: center;
 }
 
 .store-offer-timer-licenses-count {
@@ -369,6 +377,7 @@
   line-height: 1;
   color: #b42318;
   font-variant-numeric: tabular-nums;
+  text-align: center;
 }
 
 .store-highlights {
@@ -1009,11 +1018,14 @@
 }
 
 .store-details h2,
-.store-faq h2 {
-  font-family: var(--font-store-display), ui-serif, Georgia, serif;
-  font-size: 1.35rem;
-  font-weight: 600;
+.store-faq h2,
+.store-included h2,
+.store-about h2 {
+  font-family: var(--font-store-display), Fredoka, ui-rounded, sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  font-weight: 800;
   letter-spacing: -0.02em;
+  color: #1e40af;
   margin-bottom: 1rem;
 }
 
@@ -1258,15 +1270,11 @@
 .store-final-cta {
   margin-top: 2.75rem;
   padding: 1.75rem 1.35rem;
-  border-radius: 1.15rem;
-  border: 1.5px solid #fc7b02;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 247, 237, 0.95) 0%,
-    rgba(255, 255, 255, 0.95) 100%
-  );
+  border-radius: 1.5rem;
+  border: 1px solid rgba(228, 231, 236, 0.9);
+  background: #ffffff;
   text-align: left;
-  box-shadow: 0 16px 40px rgba(16, 24, 40, 0.06);
+  box-shadow: 0 4px 20px rgba(16, 24, 40, 0.04);
 }
 
 @media (min-width: 720px) {
@@ -1957,6 +1965,33 @@
 }
 .store-no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.store-carousel-3d-box,
+.store-3d-box {
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  box-shadow:
+    8px 10px 0px 0px #0f172a,
+    14px 18px 28px -2px rgba(15, 23, 42, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.store-carousel-3d-box:hover,
+.store-3d-box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    10px 12px 0px 0px #0f172a,
+    16px 22px 34px -2px rgba(15, 23, 42, 0.35);
+}
+
+@media (max-width: 640px) {
+  .store-carousel-3d-box,
+  .store-3d-box {
+    box-shadow:
+      6px 8px 0px 0px #0f172a,
+      10px 14px 22px -2px rgba(15, 23, 42, 0.25);
+  }
 }
 
 /* ——— Kids bundle conversion sections ——— */

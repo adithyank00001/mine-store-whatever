@@ -116,7 +116,7 @@ export function ProductSamplesCarousel({
           Worksheet Samples
         </span>
         <h2
-          className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-slate-900"
+          className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
           style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
         >
           Look Inside the Worksheets
@@ -128,7 +128,7 @@ export function ProductSamplesCarousel({
 
       {/* Sliding Carousel Stage */}
       <div className="mt-6 mx-auto w-full max-w-md sm:max-w-lg">
-        <div className="relative rounded-3xl border border-slate-200/90 bg-white p-4 sm:p-6 shadow-sm">
+        <div className="relative rounded-3xl p-4 sm:p-6 store-carousel-3d-box">
           {/* Card Header: Badge + Counter */}
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 border border-blue-100">
@@ -141,7 +141,7 @@ export function ProductSamplesCarousel({
 
           {/* Sliding Viewport */}
           <div
-            className="relative mt-4 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-50 border border-slate-200/70"
+            className="relative mt-4 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-50/90 border border-slate-200/80 shadow-[inset_0_2px_6px_rgba(15,23,42,0.04)]"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
@@ -167,7 +167,7 @@ export function ProductSamplesCarousel({
                       quality: "good",
                     })}
                     alt={sample.title}
-                    className="size-full rounded-xl object-contain select-none"
+                    className="size-full rounded-xl object-contain select-none drop-shadow-md"
                     loading={idx === 0 ? "eager" : "lazy"}
                     decoding="async"
                   />

@@ -20,7 +20,10 @@ export function ProductDetails({
   return (
     <section className="store-details" aria-label="Product details">
       <article className="store-included">
-        <h2 style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}>
+        <h2
+          className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
+          style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
+        >
           What&apos;s included in the learning bundle?
         </h2>
         {product.includedHeadline ? (
@@ -169,7 +172,7 @@ export function ProductDetails({
             </div>
 
             <h2
-              className="mt-3 !mb-0 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900"
+              className="mt-3 !mb-0 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
               style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
             >
               Why Parents &amp; Teachers Love This Bundle ❤️
@@ -213,19 +216,58 @@ export function ProductDetails({
 
       <div className="store-details-split">
         <article>
-          <h2>How it works</h2>
+          <h2
+            className="text-center text-2xl sm:text-3xl font-black tracking-tight text-[#1e40af] mb-4"
+            style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
+          >
+            Easy to Use
+          </h2>
+
+          <div className="mb-5 rounded-2xl border border-blue-200/90 bg-blue-50/70 p-4 sm:p-5 shadow-xs">
+            <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-blue-800">
+              🖨️ EASY TO USE
+            </span>
+            <p className="mt-2 text-sm sm:text-base font-extrabold text-slate-800 flex flex-wrap items-center gap-1.5 sm:gap-2 leading-relaxed">
+              <span>Download</span>
+              <span className="text-blue-600 font-bold">→</span>
+              <span>Print</span>
+              <span className="text-blue-600 font-bold">→</span>
+              <span>Give to Your Child</span>
+              <span className="text-blue-600 font-bold">→</span>
+              <span className="text-emerald-700 font-black">Let the Learning Begin!</span>
+            </p>
+          </div>
+
           <ol>
-            {product.howItWorks.map((step, index) => (
-              <li key={step}>
-                <span>{index + 1}</span>
-                <p>{step}</p>
-              </li>
-            ))}
+            {product.howItWorks.map((step, index) => {
+              const colonIdx = step.indexOf(":");
+              const hasColon = colonIdx !== -1;
+              const title = hasColon ? step.slice(0, colonIdx).trim() : null;
+              const body = hasColon ? step.slice(colonIdx + 1).trim() : step;
+              return (
+                <li key={step}>
+                  <span>{index + 1}</span>
+                  <p>
+                    {title ? (
+                      <strong className="font-extrabold text-slate-900">
+                        {title}:{" "}
+                      </strong>
+                    ) : null}
+                    {body}
+                  </p>
+                </li>
+              );
+            })}
           </ol>
         </article>
 
-        <div className="store-faq">
-          <h2>FAQ</h2>
+        <div className="store-faq store-3d-box rounded-3xl p-5 sm:p-7 md:p-8">
+          <h2
+            className="text-center text-2xl sm:text-3xl font-black tracking-tight text-[#1e40af] mb-4"
+            style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
+          >
+            FAQ
+          </h2>
           <div className="divide-y divide-[var(--store-line)]">
             {product.faqs.map((faq) => (
               <details key={faq.question} className="group py-4">
@@ -244,7 +286,10 @@ export function ProductDetails({
 
       {product.finalCta ? (
         <section className="store-final-cta" aria-label="Final call to action">
-          <h2 className="store-final-cta-headline">
+          <h2
+            className="store-final-cta-headline text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
+            style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
+          >
             {product.finalCta.headline}
           </h2>
           <p className="store-final-cta-body">{product.finalCta.body}</p>

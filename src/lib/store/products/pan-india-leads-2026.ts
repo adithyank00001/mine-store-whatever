@@ -125,20 +125,20 @@ export const panIndiaLeads2026: StoreProductConfig = {
   includedNote:
     "Organized into clean, age-appropriate folders for Ages 2 to 8. Print at home or school in just 1 click with unlimited lifetime access:",
   included: [
-    { label: "Numbers, counting & recognition" },
-    { label: "Alphabet tracing & phonics practice" },
-    { label: "Vocabulary & early reading" },
-    { label: "Time-telling, days & calendars" },
-    { label: "Matching, sorting & pattern activities" },
-    { label: "Mazes, dot-to-dots & puzzles" },
-    { label: "Creative coloring & drawing prompts" },
-    { label: "Social-emotional learning & affirmations" },
-    { label: "Flashcards, sight words & phonics builders" },
-    { label: "Cutting skills & fine motor activities" },
-    { label: "Outer space adventures & themed sets" },
-    { label: "Science experiments & discovery printables" },
-    { label: "Chore charts, busy books & role-play sets" },
-    { label: "and so much more!" },
+    { label: "🔢 Numbers, counting & recognition" },
+    { label: "🔤 Alphabet tracing & phonics practice" },
+    { label: "📚 Vocabulary & early reading" },
+    { label: "⏰ Time-telling, days & calendars" },
+    { label: "🧩 Matching, sorting & pattern activities" },
+    { label: "🧠 Mazes, dot-to-dots & puzzles" },
+    { label: "🎨 Creative coloring & drawing prompts" },
+    { label: "💛 Social-emotional learning & affirmations" },
+    { label: "🗂️ Flashcards, sight words & phonics builders" },
+    { label: "✂️ Cutting skills & fine motor activities" },
+    { label: "🚀 Outer space adventures & themed sets" },
+    { label: "🔬 Science experiments & discovery printables" },
+    { label: "📋 Chore charts, busy books & role-play sets" },
+    { label: "✨ and so much more!" },
   ],
   bonusIncluded: [],
   reviews: [
@@ -200,9 +200,10 @@ export const panIndiaLeads2026: StoreProductConfig = {
     },
   ],
   howItWorks: [
-    "Secure Checkout: Choose your payment method and complete the purchase on this page.",
-    "Instant Delivery: You will immediately receive an email via Gmail containing your secure Google Drive access link.",
-    "Download & Launch: Download the database files, import the contacts into your marketing tools, and start making revenue from next day.",
+    "Download: Get instant 1-click access to all 15,000+ printable worksheets immediately after checkout.",
+    "Print: Print anytime at home or at any local print shop in color or Black & White.",
+    "Give to Your Child: Hand over the fun worksheets and watch them happily learn on their own without screens.",
+    "Let the Learning Begin!: Over 15,000 sheets across 12 categories for endless daily discovery and sharp growth.",
   ],
   faqs: [
     {
@@ -221,9 +222,9 @@ export const panIndiaLeads2026: StoreProductConfig = {
         "Not at all! These worksheets are specially designed to be just as fun and effective in Black & White too. You can print them easily at home or at any local print shop for very cheap.",
     },
     {
-      question: "Is ₹199 a one-time payment?",
+      question: "Is ₹497 a one-time payment?",
       answer:
-        "Yes, 100% one-time! There are no extra or hidden fees. You pay ₹199 just once and keep all 15,000+ worksheets forever.",
+        "Yes, 100% one-time! There are no extra or hidden fees. You pay ₹497 just once and keep all 15,000+ worksheets forever.",
     },
     {
       question: "Will my child get bored of these worksheets?",

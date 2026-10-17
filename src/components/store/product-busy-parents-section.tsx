@@ -23,8 +23,8 @@ export function ProductBusyParentsSection() {
         </span>
 
         <h2
-          className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900"
-          style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
+          className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
+          style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
         >
           No Free Time? No Problem.
         </h2>

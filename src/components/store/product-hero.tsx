@@ -349,9 +349,9 @@ function OfferCountdown() {
   }, []);
 
   return (
-    <div className="store-offer-timer" aria-live="polite">
-      <p className="store-offer-timer-title">Offer ending soon</p>
-      <p className="store-offer-timer-digits" suppressHydrationWarning>
+    <div className="store-offer-timer mx-auto flex flex-col items-center justify-center text-center" aria-live="polite">
+      <p className="store-offer-timer-title text-center">Offer ending soon</p>
+      <p className="store-offer-timer-digits text-center" suppressHydrationWarning>
         {remaining == null ? "--:--:--" : formatCountdown(remaining)}
       </p>
     </div>
@@ -756,27 +756,36 @@ export function ProductHero({ product }: Props) {
             })}
           </ul>
 
-          <div className="mt-6 flex flex-wrap items-end gap-3">
-            <p className="store-price">
-              {formatMoney(unitPrice, product.currencySymbol)}
-            </p>
-            {product.compareAtPrice != null ? (
-              <p className="store-compare">
-                {formatMoney(product.compareAtPrice, product.currencySymbol)}
+          <div className="mt-6 flex flex-col items-center justify-center text-center">
+            {/* Price & Original Price */}
+            <div className="flex flex-wrap items-baseline justify-center gap-2.5 sm:gap-3">
+              <p className="store-price">
+                {formatMoney(unitPrice, product.currencySymbol)}
               </p>
-            ) : null}
+              {product.compareAtPrice != null ? (
+                <p className="store-compare">
+                  {formatMoney(product.compareAtPrice, product.currencySymbol)}
+                </p>
+              ) : null}
+            </div>
+
+            {/* Discount % Badge Under Price */}
             {product.compareAtPrice != null &&
             product.compareAtPrice > unitPrice ? (
-              <span className="store-save">
-                Save{" "}
-                {formatMoney(
-                  product.compareAtPrice - unitPrice,
-                  product.currencySymbol,
-                )}
-              </span>
+              <div className="mt-1.5 flex items-center justify-center">
+                <span className="store-save">
+                  {Math.round(
+                    ((product.compareAtPrice - unitPrice) /
+                      product.compareAtPrice) *
+                      100,
+                  )}
+                  % OFF
+                </span>
+              </div>
             ) : null}
+
+            <OfferCountdown />
           </div>
-          <OfferCountdown />
 
           {product.options.length > 0 ? (
             <div className="mt-8 space-y-6">
@@ -855,7 +864,7 @@ export function ProductHero({ product }: Props) {
 
           {/* Problem & Solution Card (Dark Background Theme) */}
           <div className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-6 sm:p-7 shadow-xl text-white">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-950/80 px-3 py-1 text-xs font-bold text-rose-300 border border-rose-800/80">
                 <AlertCircle className="size-3.5 text-rose-400" />
                 Parent Alert • Child Development
@@ -863,12 +872,12 @@ export function ProductHero({ product }: Props) {
             </div>
 
             <h3
-              className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-white"
+              className="mt-3 text-center text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight"
               style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
             >
               Do You Know?
             </h3>
-            <p className="mt-1.5 text-sm sm:text-base font-medium text-slate-300">
+            <p className="mt-1.5 text-center text-sm sm:text-base font-medium text-slate-300">
               Excessive mobile screen time is secretly hurting your child&apos;s daily growth:
             </p>
 
@@ -905,25 +914,44 @@ export function ProductHero({ product }: Props) {
               </div>
             </div>
 
-            {/* The Easy Solution Card */}
-            <div className="mt-5 rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 via-emerald-50/80 to-white p-5 sm:p-6 shadow-md text-slate-900">
-              <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-emerald-800">
-                <CheckCircle2 className="size-4 text-emerald-600" />
+            {/* Downward pointing thick block arrow in normal green color towards the solution box */}
+            <div className="my-3 sm:my-3.5 flex items-center justify-center">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-10 sm:size-12 text-[#22c55e] drop-shadow-md"
+                aria-hidden="true"
+              >
+                <path d="M12 22l-9-9h5V2h8v11h5L12 22z" />
+              </svg>
+            </div>
+
+            {/* The Easy Solution Card (White Background & Normal White Border) */}
+            <div className="rounded-2xl border border-white/90 bg-white p-5 sm:p-6 shadow-md text-slate-900">
+              <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-green-700">
+                <CheckCircle2 className="size-4 text-green-600" />
                 <span>The Easy Solution</span>
               </div>
-              <p className="mt-2 text-base sm:text-lg font-black text-emerald-950">
-                Stop fighting over the phone. Give them something more exciting!
-              </p>
-              <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-emerald-900/90 font-medium">
-                These 15,000+ fun worksheets feel like a game. Your child will happily leave the phone to color, solve mazes, and learn independently.
-              </p>
 
-              <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-3 border-t border-emerald-200 text-xs font-bold text-emerald-800">
-                <span>✓ 100% Screen-Free</span>
-                <span className="text-emerald-400">•</span>
-                <span>✓ Builds Pencil Grip</span>
-                <span className="text-emerald-400">•</span>
-                <span>✓ Independent Learning</span>
+              {/* Instantly Catching Attention Highlighted Dialogue */}
+              <div className="mt-3.5 rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 p-4 sm:p-5 shadow-sm text-slate-900">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl sm:text-3xl select-none leading-none mt-0.5">💬</span>
+                  <div className="space-y-2 text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
+                    <p>
+                      Instead of constantly saying{" "}
+                      <mark className="inline-block rounded-lg bg-amber-200/90 px-2 py-0.5 font-black text-slate-950 border border-amber-300 shadow-xs not-italic">
+                        “Put the phone away!”
+                      </mark>
+                    </p>
+                    <p className="font-extrabold text-slate-900">
+                      Give your child something they{" "}
+                      <mark className="inline-block rounded-lg bg-green-200 px-2 py-0.5 font-black text-green-950 border border-green-400 shadow-xs not-italic">
+                        actually WANT to do.
+                      </mark>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
