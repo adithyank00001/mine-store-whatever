@@ -853,29 +853,29 @@ export function ProductHero({ product }: Props) {
 
           <ProductVideo />
 
-          {/* Problem & Solution Card */}
-          <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm">
+          {/* Problem & Solution Card (Dark Background Theme) */}
+          <div className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-6 sm:p-7 shadow-xl text-white">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-700 border border-rose-200/80">
-                <AlertCircle className="size-3.5 text-rose-600" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-950/80 px-3 py-1 text-xs font-bold text-rose-300 border border-rose-800/80">
+                <AlertCircle className="size-3.5 text-rose-400" />
                 Parent Alert • Child Development
               </span>
             </div>
 
             <h3
-              className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-slate-900"
-              style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
+              className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-white"
+              style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
             >
               Do You Know?
             </h3>
-            <p className="mt-1.5 text-sm sm:text-base font-medium text-slate-600">
+            <p className="mt-1.5 text-sm sm:text-base font-medium text-slate-300">
               Excessive mobile screen time is secretly hurting your child&apos;s daily growth:
             </p>
 
-            {/* Negative Impacts - Standardized Grid */}
+            {/* Negative Impacts - Light Cards */}
             <div className="mt-5 space-y-3">
-              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
                 <div className="text-sm leading-relaxed text-slate-700">
@@ -884,8 +884,8 @@ export function ProductHero({ product }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
                 <div className="text-sm leading-relaxed text-slate-700">
@@ -894,8 +894,8 @@ export function ProductHero({ product }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
                 <div className="text-sm leading-relaxed text-slate-700">
@@ -906,7 +906,7 @@ export function ProductHero({ product }: Props) {
             </div>
 
             {/* The Easy Solution Card */}
-            <div className="mt-5 rounded-2xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/80 via-emerald-50/30 to-white p-5 sm:p-6 shadow-xs">
+            <div className="mt-5 rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 via-emerald-50/80 to-white p-5 sm:p-6 shadow-md text-slate-900">
               <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-emerald-800">
                 <CheckCircle2 className="size-4 text-emerald-600" />
                 <span>The Easy Solution</span>
@@ -914,15 +914,15 @@ export function ProductHero({ product }: Props) {
               <p className="mt-2 text-base sm:text-lg font-black text-emerald-950">
                 Stop fighting over the phone. Give them something more exciting!
               </p>
-              <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-emerald-900/90">
+              <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-emerald-900/90 font-medium">
                 These 15,000+ fun worksheets feel like a game. Your child will happily leave the phone to color, solve mazes, and learn independently.
               </p>
 
-              <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-3 border-t border-emerald-200/60 text-xs font-bold text-emerald-800">
+              <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-3 border-t border-emerald-200 text-xs font-bold text-emerald-800">
                 <span>✓ 100% Screen-Free</span>
-                <span>•</span>
+                <span className="text-emerald-400">•</span>
                 <span>✓ Builds Pencil Grip</span>
-                <span>•</span>
+                <span className="text-emerald-400">•</span>
                 <span>✓ Independent Learning</span>
               </div>
             </div>

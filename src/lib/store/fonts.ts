@@ -1,14 +1,15 @@
-import { Fraunces, Manrope } from "next/font/google";
+import { Fredoka, Manrope } from "next/font/google";
 
 /**
  * Store fonts only — primary (headings) + secondary (body).
- * Variable fonts (no weight arrays) — more reliable with Turbopack/Vercel builds.
- * Shared by `/` and `/store/*` so we do not load the same family twice.
+ * Fredoka: Fun, friendly, rounded kids display font.
+ * Manrope: Clean, readable body font.
  */
-export const storeDisplayFont = Fraunces({
+export const storeDisplayFont = Fredoka({
   subsets: ["latin"],
   variable: "--font-store-display",
   display: "swap",
+  weight: ["500", "600", "700"],
 });
 
 export const storeSansFont = Manrope({

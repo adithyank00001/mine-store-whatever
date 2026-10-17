@@ -125,18 +125,20 @@ export const panIndiaLeads2026: StoreProductConfig = {
   includedNote:
     "Organized into clean, age-appropriate folders for Ages 2 to 8. Print at home or school in just 1 click with unlimited lifetime access:",
   included: [
-    { label: "🔤 Alphabet & Phonics Tracing (2,500+ Sheets)" },
-    { label: "🔢 Numbers 1–100 & Early Math (2,000+ Sheets)" },
-    { label: "🧠 Brain Puzzles, Mazes & Logic Games (1,800+ Sheets)" },
-    { label: "✏️ Handwriting & Pencil Control (2,200+ Sheets)" },
-    { label: "🎨 Coloring & Creative Drawing (3,000+ Sheets)" },
-    { label: "✂️ Cut, Paste & Craft Activities (1,200+ Sheets)" },
-    { label: "📖 Sight Words & Reading Readiness (1,500+ Sheets)" },
-    { label: "🔷 Shapes, Colors & Pattern Games (1,000+ Sheets)" },
-    { label: "🐾 Animals, Birds & Nature Science (800+ Sheets)" },
-    { label: "🍎 Good Habits & Daily Manners Sheets (500+ Sheets)" },
-    { label: "📂 Age-Sorted Folders (Ages 2–3, 4–5 & 6–8)" },
-    { label: "⚡ Instant Lifetime WhatsApp & Email Delivery" },
+    { label: "Numbers, counting & recognition" },
+    { label: "Alphabet tracing & phonics practice" },
+    { label: "Vocabulary & early reading" },
+    { label: "Time-telling, days & calendars" },
+    { label: "Matching, sorting & pattern activities" },
+    { label: "Mazes, dot-to-dots & puzzles" },
+    { label: "Creative coloring & drawing prompts" },
+    { label: "Social-emotional learning & affirmations" },
+    { label: "Flashcards, sight words & phonics builders" },
+    { label: "Cutting skills & fine motor activities" },
+    { label: "Outer space adventures & themed sets" },
+    { label: "Science experiments & discovery printables" },
+    { label: "Chore charts, busy books & role-play sets" },
+    { label: "and so much more!" },
   ],
   bonusIncluded: [],
   reviews: [
@@ -204,29 +206,29 @@ export const panIndiaLeads2026: StoreProductConfig = {
   ],
   faqs: [
     {
-      question: "When will I receive my product?",
+      question: "How will I get the worksheets?",
       answer:
-        "You will receive instant access to the Google Drive link via email the moment your payment is successfully processed.",
+        "You can download the PDF instantly right after your payment! We will also send the download link to your Email so you have it safe forever.",
     },
     {
-      question: "How long will I have access to the content in the database?",
+      question: "Do I need a laptop to open this?",
       answer:
-        "Once you purchase, you receive lifetime access to download and use the database files.",
+        "No laptop needed! You can easily open the files right on your mobile phone. Everything is sorted by age, so it is very easy to find what you need.",
     },
     {
-      question: "Are these leads actually useful?",
+      question: "Do I need a color printer for these sheets?",
       answer:
-        "Yes, the database is structured to generate high-quality leads that are actively interested in a wide variety of products and services.",
+        "Not at all! These worksheets are specially designed to be just as fun and effective in Black & White too. You can print them easily at home or at any local print shop for very cheap.",
     },
     {
-      question: "What format is the database delivered in?",
+      question: "Is ₹199 a one-time payment?",
       answer:
-        "The database is delivered in universal spreadsheet formats (.xlsx and .csv). This means you can easily open, filter, and sort the data using Microsoft Excel, Google Sheets, or Apple Numbers. It is also perfectly formatted to be uploaded instantly into any CRM, email sender, or bulk messaging tool.",
+        "Yes, 100% one-time! There are no extra or hidden fees. You pay ₹199 just once and keep all 15,000+ worksheets forever.",
     },
     {
-      question: "Does this database cover all states in India?",
+      question: "Will my child get bored of these worksheets?",
       answer:
-        "Yes, absolutely. This is a comprehensive All-India dataset that includes structured data from every single state and union territory across the country.",
+        "No, because there is so much variety! If they get tired of tracing alphabets today, you can give them a fun maze or a coloring page tomorrow. With 15,000+ sheets, there is always a new, fun game to keep them away from the mobile phone.",
     },
   ],
   buyButtonLabel: "GET THIS BUNDLE FOR MY CHILD",

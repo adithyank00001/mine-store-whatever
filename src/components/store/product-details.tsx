@@ -1,11 +1,11 @@
-import { Check, Plus, ShieldCheck, Star } from "lucide-react";
+import { Check, Plus, Star } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { ProductBusyParentsSection } from "@/components/store/product-busy-parents-section";
 import { ProductReviewFormLazy } from "@/components/store/product-review-form-lazy";
 import { ProductSamplesCarousel } from "@/components/store/product-samples-carousel";
 import { ProductStars } from "@/components/store/product-stars";
-import { ProductValueComparison } from "@/components/store/product-value-comparison";
+import { ProductRefundGuaranteeSection } from "@/components/store/product-refund-guarantee-section";
 import { StoreFinalCtaBuyButton } from "@/components/store/store-buy-cta-button";
 import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import type { StoreProductContent } from "@/lib/store/product-content";
@@ -20,13 +20,32 @@ export function ProductDetails({
   return (
     <section className="store-details" aria-label="Product details">
       <article className="store-included">
-        <h2>What&apos;s included in the learning bundle?</h2>
-        <p className="store-included-headline">{product.includedHeadline}</p>
-        <p className="store-included-note">{product.includedNote}</p>
+        <h2 style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}>
+          What&apos;s included in the learning bundle?
+        </h2>
+        {product.includedHeadline ? (
+          <p className="store-included-headline">{product.includedHeadline}</p>
+        ) : null}
+        {product.includedNote ? (
+          <p className="store-included-note">{product.includedNote}</p>
+        ) : null}
+
+        <div className="overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-sm mb-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/store/activities-included.jpg"
+            alt="Fun & Engaging Activities Included in the 15,000+ Learning Bundle"
+            className="w-full h-auto object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
         <ul className="store-category-grid">
           {product.included.map((item) => {
             const labelLower = item.label.toLowerCase();
             const isMore =
+              labelLower.includes("and so much more") ||
               labelLower.includes("and many more") ||
               labelLower.includes("more than 200");
             return (
@@ -128,21 +147,9 @@ export function ProductDetails({
           aria-label="Why Parents & Teachers Love This Bundle"
         >
           {/* High-Converting Testimonials Heading & Trust Badge */}
-          <div className="mb-8 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 text-center shadow-xs">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200/80">
-              <ShieldCheck className="size-3.5 text-emerald-600" />
-              Verified Community Feedback
-            </span>
-
-            <h2
-              className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900"
-              style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
-            >
-              Why Parents &amp; Teachers Love This Bundle ❤️
-            </h2>
-
+          <div className="mb-4 text-center max-w-2xl mx-auto flex flex-col items-center">
             {/* Standardized Trust Badge */}
-            <div className="mt-4 inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 rounded-2xl border border-amber-200/90 bg-amber-50/70 px-4 sm:px-6 py-2.5 shadow-xs">
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 rounded-2xl border border-amber-200/90 bg-amber-50/70 px-4 sm:px-6 py-2.5 shadow-xs">
               <div className="flex items-center gap-1.5">
                 <div className="flex items-center text-amber-500">
                   <Star className="size-4 fill-amber-400 text-amber-400" />
@@ -157,24 +164,16 @@ export function ProductDetails({
               <span className="hidden sm:inline text-amber-300">•</span>
 
               <p className="text-xs sm:text-sm font-extrabold text-amber-950 tracking-tight">
-                ⭐⭐⭐⭐⭐ Trusted by 2400+ Happy Indian Parents &amp; 200+ Pre-Schools
+                Trusted by 2400+ Happy Indian Parents &amp; 200+ Pre-Schools
               </p>
             </div>
 
-            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs font-semibold text-slate-500">
-              <span className="flex items-center gap-1 text-emerald-700">
-                <Check className="size-3.5 text-emerald-600" strokeWidth={2.5} />
-                100% Genuine Reviews
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1 text-slate-600">
-                Direct WhatsApp &amp; Email Feedback
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1 text-blue-700">
-                Pan-India Community
-              </span>
-            </div>
+            <h2
+              className="mt-3 !mb-0 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900"
+              style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
+            >
+              Why Parents &amp; Teachers Love This Bundle ❤️
+            </h2>
           </div>
           <ul className="store-reviews-list">
             {product.reviews.map((review) => (
@@ -211,8 +210,6 @@ export function ProductDetails({
       ) : null}
 
       <ProductBusyParentsSection />
-
-      <ProductValueComparison price={product.price} />
 
       <div className="store-details-split">
         <article>
@@ -257,6 +254,8 @@ export function ProductDetails({
           </div>
         </section>
       ) : null}
+
+      <ProductRefundGuaranteeSection buttonLabel={product.buyButtonLabel} />
 
       {children}
     </section>

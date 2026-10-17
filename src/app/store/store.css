@@ -268,11 +268,11 @@
 }
 
 .store-title {
-  font-family: var(--font-store-display), ui-serif, Georgia, serif;
-  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  font-weight: 600;
+  font-family: var(--font-store-display), "Fredoka", ui-rounded, "Comic Sans MS", cursive, sans-serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
   color: #1e40af;
 }
 

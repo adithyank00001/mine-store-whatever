@@ -1,23 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ZoomIn,
-  X,
-  FileText,
-  Printer,
-  Heart,
-  Pause,
-  Play,
-  Sparkles,
-  Layers,
-} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 
 import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import type { ProductSampleItem } from "@/lib/store/product-content";
-import { cn } from "@/lib/utils";
 
 export const DEFAULT_SAMPLES: ProductSampleItem[] = [
   {
@@ -70,8 +57,6 @@ export const DEFAULT_SAMPLES: ProductSampleItem[] = [
   },
 ];
 
-const AUTO_PLAY_INTERVAL = 4000; // 4 seconds
-
 export function ProductSamplesCarousel({
   samples = DEFAULT_SAMPLES,
 }: {
@@ -79,357 +64,243 @@ export function ProductSamplesCarousel({
 }) {
   const items = samples && samples.length > 0 ? samples : DEFAULT_SAMPLES;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [zoomOpen, setZoomOpen] = useState(false);
 
-  // Touch swipe handling
   const touchStartX = useRef<number | null>(null);
 
-  const nextSlide = useCallback(() => {
+  const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % items.length);
-  }, [items.length]);
+  };
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-  }, [items.length]);
+  };
 
-  // Automatic slide advance
+  // Continuous auto-sliding every 3 seconds (only pauses if full zoom modal is open)
   useEffect(() => {
-    if (isPaused || lightboxOpen) return;
+    if (zoomOpen) return;
 
     const timer = setInterval(() => {
-      nextSlide();
-    }, AUTO_PLAY_INTERVAL);
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, [isPaused, lightboxOpen, nextSlide]);
+  }, [zoomOpen, items.length]);
 
-  // Keyboard navigation for Lightbox
-  useEffect(() => {
-    if (!lightboxOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setLightboxOpen(false);
-      } else if (e.key === "ArrowLeft") {
-        prevSlide();
-      } else if (e.key === "ArrowRight") {
-        nextSlide();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, prevSlide, nextSlide]);
-
-  const currentSample = items[currentIndex];
-
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (diff > 45) {
+    if (diff > 40) {
       nextSlide();
-    } else if (diff < -45) {
+    } else if (diff < -40) {
       prevSlide();
     }
     touchStartX.current = null;
   };
 
+  const currentSample = items[currentIndex];
+
   return (
-    <>
-      <section
-        id="product-samples-section"
-        aria-label="Samples"
-        className="store-samples-section pt-4"
-      >
-        {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200/80 bg-blue-50/70 px-3.5 py-1 text-xs font-bold text-blue-700">
-            <Layers className="size-3.5 text-blue-600" />
-            <span>Interactive Gallery Preview</span>
-          </div>
-
-          <h2
-            className="mt-2.5 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl lg:text-4xl"
-            style={{
-              fontFamily: "var(--font-store-display), ui-serif, Georgia, serif",
-            }}
-          >
-            Samples
-          </h2>
-
-          <p className="mt-1.5 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Take a look inside the actual worksheets. Professionally illustrated for high-contrast, crystal-clear printing at home.
-          </p>
-        </div>
-
-        {/* Single Image Carousel Stage */}
-        <div
-          className="mt-8 mx-auto w-full max-w-md sm:max-w-lg"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+    <section
+      id="product-samples-section"
+      aria-label="Worksheet Samples"
+      className="my-8 sm:my-10"
+    >
+      {/* Header */}
+      <div className="text-center max-w-xl mx-auto">
+        <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 border border-blue-200/80">
+          Worksheet Samples
+        </span>
+        <h2
+          className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-slate-900"
+          style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
         >
-          <div className="relative rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-xl shadow-slate-100 transition-all duration-300">
-            {/* Top Bar of Card */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-slate-100 gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full border border-blue-200/80 bg-blue-50/80 px-3 py-1 text-xs font-extrabold text-blue-800">
-                {currentSample.badge ?? "Featured Worksheet"}
-              </span>
+          Look Inside the Worksheets
+        </h2>
+        <p className="mt-1.5 text-sm sm:text-base text-slate-600">
+          Swipe through a few printable activities included in your bundle.
+        </p>
+      </div>
 
-              <div className="flex items-center gap-2.5">
-                {/* Dot Indicators without numbers */}
-                <div className="flex items-center gap-1" aria-hidden="true">
-                  {items.map((_, dotIdx) => (
-                    <span
-                      key={dotIdx}
-                      className={cn(
-                        "h-1.5 rounded-full transition-all duration-300",
-                        dotIdx === currentIndex
-                          ? "w-4 bg-blue-600"
-                          : "w-1.5 bg-slate-200",
-                      )}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setIsPaused((p) => !p)}
-                  className="flex size-7 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition text-[10px] cursor-pointer"
-                  title={isPaused ? "Play auto-slideshow" : "Pause auto-slideshow"}
-                  aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
-                >
-                  {isPaused ? (
-                    <Play className="size-3 fill-current ml-0.5" />
-                  ) : (
-                    <Pause className="size-3 fill-current" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Single Image Frame with Slide Window */}
-            <div className="relative mt-4 aspect-[3/4] w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50/70 shadow-inner group">
-              {/* Sliding Track */}
-              <div
-                className="flex h-full w-full transition-transform duration-500 ease-out cursor-pointer"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                onClick={() => setLightboxOpen(true)}
-              >
-                {items.map((sample, idx) => (
-                  <div
-                    key={sample.title}
-                    className="relative flex h-full w-full shrink-0 items-center justify-center p-3 sm:p-4"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={cloudinaryDeliveryUrl(sample.image, {
-                        width: 700,
-                        quality: "good",
-                      })}
-                      alt={sample.title}
-                      className="size-full rounded-xl object-contain shadow-xs transition-transform duration-300 group-hover:scale-[1.02]"
-                      loading={idx === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Floating Left Arrow */}
-              <button
-                type="button"
-                id="samples-single-prev"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  prevSlide();
-                }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 flex size-10 items-center justify-center rounded-full bg-white/95 text-slate-800 shadow-md backdrop-blur-xs transition hover:scale-110 hover:bg-white active:scale-95 cursor-pointer z-10 border border-slate-200"
-                aria-label="Previous sample"
-              >
-                <ChevronLeft className="size-5" />
-              </button>
-
-              {/* Floating Right Arrow */}
-              <button
-                type="button"
-                id="samples-single-next"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  nextSlide();
-                }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 flex size-10 items-center justify-center rounded-full bg-white/95 text-slate-800 shadow-md backdrop-blur-xs transition hover:scale-110 hover:bg-white active:scale-95 cursor-pointer z-10 border border-slate-200"
-                aria-label="Next sample"
-              >
-                <ChevronRight className="size-5" />
-              </button>
-
-              {/* Zoom Cue floating badge */}
-              <button
-                type="button"
-                onClick={() => setLightboxOpen(true)}
-                className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-slate-900/85 backdrop-blur-xs px-3 py-1.5 text-xs font-semibold text-white shadow-md transition hover:bg-slate-900 cursor-pointer z-10"
-                aria-label="Zoom sample image"
-              >
-                <ZoomIn className="size-3.5" />
-                <span>Tap to enlarge</span>
-              </button>
-            </div>
-
-            {/* Caption Section */}
-            <div className="mt-4 text-center">
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight transition-all">
-                {currentSample.title}
-              </h3>
-
-              {currentSample.description ? (
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
-                  {currentSample.description}
-                </p>
-              ) : null}
-
-              <div className="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3 text-xs font-semibold text-slate-500">
-                <span className="flex items-center gap-1.5">
-                  <Printer className="size-3.5 text-blue-600" />
-                  Print at Home PDF
-                </span>
-                <span className="flex items-center gap-1.5 text-emerald-700">
-                  <Heart className="size-3.5 fill-emerald-600 text-emerald-600" />
-                  Fun &amp; Engaging
-                </span>
-              </div>
-            </div>
+      {/* Sliding Carousel Stage */}
+      <div className="mt-6 mx-auto w-full max-w-md sm:max-w-lg">
+        <div className="relative rounded-3xl border border-slate-200/90 bg-white p-4 sm:p-6 shadow-sm">
+          {/* Card Header: Badge + Counter */}
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 border border-blue-100">
+              {currentSample.badge ?? "Sample Activity"}
+            </span>
+            <span className="text-xs font-bold text-slate-400">
+              {currentIndex + 1} of {items.length}
+            </span>
           </div>
 
-          {/* Quick Category Chips Strip (No numbers) */}
-          <div className="mt-4.5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-            {items.map((sample, idx) => {
-              const isSelected = idx === currentIndex;
-              return (
-                <button
+          {/* Sliding Viewport */}
+          <div
+            className="relative mt-4 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-50 border border-slate-200/70"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
+            {/* Sliding Track */}
+            <div
+              className="flex h-full transition-transform duration-500 ease-in-out cursor-pointer"
+              style={{
+                width: `${items.length * 100}%`,
+                transform: `translateX(-${(currentIndex * 100) / items.length}%)`,
+              }}
+              onClick={() => setZoomOpen(true)}
+            >
+              {items.map((sample, idx) => (
+                <div
                   key={sample.title}
-                  type="button"
-                  id={`sample-category-chip-${idx}`}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={cn(
-                    "flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer border",
-                    isSelected
-                      ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
-                      : "bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50",
-                  )}
-                  aria-label={`Show ${sample.title}`}
-                  aria-pressed={isSelected}
+                  style={{ width: `${100 / items.length}%` }}
+                  className="flex h-full shrink-0 items-center justify-center p-3 sm:p-4"
                 >
-                  <span>{sample.title}</span>
-                </button>
-              );
-            })}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cloudinaryDeliveryUrl(sample.image, {
+                      width: 700,
+                      quality: "good",
+                    })}
+                    alt={sample.title}
+                    className="size-full rounded-xl object-contain select-none"
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Left Prev Arrow */}
+            <button
+              type="button"
+              id="samples-prev-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                prevSlide();
+              }}
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 flex size-9 sm:size-10 items-center justify-center rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200 hover:scale-105 active:scale-95 transition cursor-pointer z-10"
+              aria-label="Previous worksheet sample"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+
+            {/* Right Next Arrow */}
+            <button
+              type="button"
+              id="samples-next-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                nextSlide();
+              }}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 flex size-9 sm:size-10 items-center justify-center rounded-full bg-white/95 text-slate-800 shadow-md border border-slate-200 hover:scale-105 active:scale-95 transition cursor-pointer z-10"
+              aria-label="Next worksheet sample"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+
+            {/* Subtle Zoom hint */}
+            <button
+              type="button"
+              onClick={() => setZoomOpen(true)}
+              className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-slate-900/75 px-2.5 py-1 text-[11px] font-medium text-white shadow-xs backdrop-blur-xs hover:bg-slate-900 transition cursor-pointer z-10"
+              aria-label="Zoom sample image"
+            >
+              <ZoomIn className="size-3" />
+              <span>Tap to zoom</span>
+            </button>
+          </div>
+
+          {/* Slide Details */}
+          <div className="mt-4 text-center">
+            <h3 className="text-base sm:text-lg font-black text-slate-900">
+              {currentSample.title}
+            </h3>
+            {currentSample.description && (
+              <p className="mt-1 text-xs sm:text-sm text-slate-600">
+                {currentSample.description}
+              </p>
+            )}
+          </div>
+
+          {/* Minimal Dot Indicators */}
+          <div className="mt-4 flex items-center justify-center gap-1.5" aria-hidden="true">
+            {items.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  idx === currentIndex
+                    ? "w-6 bg-blue-600"
+                    : "w-2 bg-slate-200 hover:bg-slate-300"
+                }`}
+                aria-label={`Go to sample ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Full-Screen Zoom Lightbox Modal */}
-      {lightboxOpen && (
+      {/* Lightweight Zoom Modal */}
+      {zoomOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={currentSample.title}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-sm p-4 sm:p-6 animate-in fade-in duration-200"
-          onClick={() => setLightboxOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-xs"
+          onClick={() => setZoomOpen(false)}
         >
           <div
-            className="relative flex max-h-[92vh] w-full max-w-xl flex-col rounded-3xl bg-white p-5 sm:p-6 shadow-2xl"
+            className="relative flex max-h-[90vh] w-full max-w-lg flex-col rounded-2xl bg-white p-4 sm:p-5 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2">
-                <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-800">
-                  {currentSample.badge ?? `Sample Preview`}
-                </span>
-                <span className="text-xs font-bold text-slate-400">
-                  {currentIndex + 1} of {items.length}
-                </span>
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div>
+                {currentSample.badge && (
+                  <span className="text-xs font-bold text-blue-600">
+                    {currentSample.badge}
+                  </span>
+                )}
+                <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
+                  {currentSample.title}
+                </h3>
               </div>
-
               <button
                 type="button"
-                onClick={() => setLightboxOpen(false)}
-                className="flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200 hover:scale-105 active:scale-95 cursor-pointer"
+                onClick={() => setZoomOpen(false)}
+                className="flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition cursor-pointer"
                 aria-label="Close sample preview"
               >
                 <X className="size-4" />
               </button>
             </div>
 
-            {/* Modal Image */}
-            <div className="relative mt-3 flex flex-1 items-center justify-center overflow-hidden rounded-2xl bg-slate-50 border border-slate-200/80 p-3 min-h-[340px] max-h-[58vh]">
+            <div className="relative mt-3 flex items-center justify-center overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 max-h-[65vh]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={cloudinaryDeliveryUrl(currentSample.image, {
-                  width: 1200,
+                  width: 1000,
                   quality: "good",
                 })}
                 alt={currentSample.title}
-                className="max-h-[54vh] w-auto rounded-lg object-contain shadow-md"
+                className="max-h-[60vh] w-auto object-contain rounded"
               />
-
-              {/* Prev / Next buttons inside modal */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  prevSlide();
-                }}
-                className="absolute left-3 flex size-9 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md backdrop-blur-xs transition hover:scale-110 hover:bg-white active:scale-95 cursor-pointer"
-                aria-label="Previous sample"
-              >
-                <ChevronLeft className="size-5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  nextSlide();
-                }}
-                className="absolute right-3 flex size-9 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md backdrop-blur-xs transition hover:scale-110 hover:bg-white active:scale-95 cursor-pointer"
-                aria-label="Next sample"
-              >
-                <ChevronRight className="size-5" />
-              </button>
             </div>
 
-            {/* Modal Caption */}
-            <div className="mt-4">
-              <h3 className="text-xl font-extrabold text-slate-900">
-                {currentSample.title}
-              </h3>
-              {currentSample.description ? (
-                <p className="mt-1 text-sm text-slate-600">
-                  {currentSample.description}
-                </p>
-              ) : null}
-
-              <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3 text-xs text-slate-500">
-                <span className="flex items-center gap-1.5 font-medium">
-                  <FileText className="size-3.5 text-blue-600" />
-                  Instant Download · PDF Format
-                </span>
-                <span className="font-semibold text-emerald-600">
-                  Ready to Print
-                </span>
-              </div>
-            </div>
+            {currentSample.description && (
+              <p className="mt-3 text-xs sm:text-sm text-slate-600 text-center">
+                {currentSample.description}
+              </p>
+            )}
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
+
+export { ProductSamplesCarousel as ProductSamplesSection };
