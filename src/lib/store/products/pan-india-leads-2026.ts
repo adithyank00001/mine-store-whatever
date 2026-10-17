@@ -39,16 +39,16 @@ export const panIndiaLeads2026: StoreProductConfig = {
   socialProofTag: "🔥 47 parents bought yesterday",
   images: [
     {
-      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792143637/il_1588xN.8178402349_qpq8.avif",
-      alt: "110 Crore+ Indian Leads database with 200+ categories and 10 Lakhs+ USA leads bonus",
+      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792260874/15_000_Printable_Worksheet_Fun.png",
+      alt: "15,000+ Printable Kids Learning Worksheets Bundle for Ages 2–8",
     },
     {
-      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789736328/Sample_category_New_Business_Owners_Category_1.webp",
-      alt: "Sample category — New Business Owners Category",
+      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792261085/15_000_Educational_Resource_Bundle.png",
+      alt: "15,000+ Educational Resource Bundle for Kids Learning",
     },
     {
-      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1789829921/Corporate_database_poster_typogr__20260918155251_1.webp",
-      alt: "Corporate database includes B2B, B2C, doctors, exporters, real estate, and many more categories",
+      src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792261455/0249c401-75c2-4125-8169-10d016513e2c.png",
+      alt: "Kids Learning Activities Worksheets Preview",
     },
   ],
   samples: [

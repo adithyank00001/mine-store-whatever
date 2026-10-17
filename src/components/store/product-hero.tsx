@@ -632,7 +632,12 @@ export function ProductHero({ product }: Props) {
             </span>
           </button>
 
-          <div className="mt-3 grid grid-cols-3 gap-2.5 sm:mt-4 sm:gap-3">
+          <div
+            className="mt-3 grid gap-2.5 sm:mt-4 sm:gap-3"
+            style={{
+              gridTemplateColumns: `repeat(${Math.min(product.images.length, 4)}, minmax(0, 1fr))`,
+            }}
+          >
             {product.images.map((image, index) => {
               const selected = index === activeImage;
               return (
@@ -968,9 +973,8 @@ export function ProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
-            <p className="text-center text-sm sm:text-base font-black tracking-tight text-red-600 flex items-center justify-center gap-1.5 leading-tight">
-              <span className="shrink-0 text-sm sm:text-base" aria-hidden="true">⚠️</span>
-              <span>Stop your kid&apos;s screen addiction before it&apos;s too late.</span>
+            <p className="text-center text-sm sm:text-base font-black tracking-tight text-red-600 leading-tight">
+              Stop your kid&apos;s screen addiction before it&apos;s too late.
             </p>
             <StoreBuyCtaButton
               onClick={() => void handleBuy()}
