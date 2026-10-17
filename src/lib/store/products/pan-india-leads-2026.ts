@@ -36,7 +36,7 @@ export const panIndiaLeads2026: StoreProductConfig = {
     "😊 Plays & Learns Without Asking for Help: Simple sheets for Ages 2–8 that kids love doing on their own.",
     "🎯 Perfect for Ages 2 to 8: Neatly organized folders so you can easily pick the right activity for your child's exact age.",
   ],
-  socialProofTag: "🔥 100+ sold yesterday!",
+  socialProofTag: "🔥 47 parents bought yesterday",
   images: [
     {
       src: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792143637/il_1588xN.8178402349_qpq8.avif",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import type { ProductSampleItem } from "@/lib/store/product-content";
@@ -64,7 +64,6 @@ export function ProductSamplesCarousel({
 }) {
   const items = samples && samples.length > 0 ? samples : DEFAULT_SAMPLES;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [zoomOpen, setZoomOpen] = useState(false);
 
   const touchStartX = useRef<number | null>(null);
 
@@ -76,16 +75,14 @@ export function ProductSamplesCarousel({
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
-  // Continuous auto-sliding every 3 seconds (only pauses if full zoom modal is open)
+  // Continuous auto-sliding every 3 seconds
   useEffect(() => {
-    if (zoomOpen) return;
-
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % items.length);
     }, 3000);
 
     return () => clearInterval(timer);
-  }, [zoomOpen, items.length]);
+  }, [items.length]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -147,12 +144,11 @@ export function ProductSamplesCarousel({
           >
             {/* Sliding Track */}
             <div
-              className="flex h-full transition-transform duration-500 ease-in-out cursor-pointer"
+              className="flex h-full transition-transform duration-500 ease-in-out"
               style={{
                 width: `${items.length * 100}%`,
                 transform: `translateX(-${(currentIndex * 100) / items.length}%)`,
               }}
-              onClick={() => setZoomOpen(true)}
             >
               {items.map((sample, idx) => (
                 <div
@@ -203,16 +199,6 @@ export function ProductSamplesCarousel({
               <ChevronRight className="size-5" />
             </button>
 
-            {/* Subtle Zoom hint */}
-            <button
-              type="button"
-              onClick={() => setZoomOpen(true)}
-              className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-slate-900/75 px-2.5 py-1 text-[11px] font-medium text-white shadow-xs backdrop-blur-xs hover:bg-slate-900 transition cursor-pointer z-10"
-              aria-label="Zoom sample image"
-            >
-              <ZoomIn className="size-3" />
-              <span>Tap to zoom</span>
-            </button>
           </div>
 
           {/* Slide Details */}
@@ -246,59 +232,6 @@ export function ProductSamplesCarousel({
         </div>
       </div>
 
-      {/* Lightweight Zoom Modal */}
-      {zoomOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-xs"
-          onClick={() => setZoomOpen(false)}
-        >
-          <div
-            className="relative flex max-h-[90vh] w-full max-w-lg flex-col rounded-2xl bg-white p-4 sm:p-5 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <div>
-                {currentSample.badge && (
-                  <span className="text-xs font-bold text-blue-600">
-                    {currentSample.badge}
-                  </span>
-                )}
-                <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
-                  {currentSample.title}
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setZoomOpen(false)}
-                className="flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition cursor-pointer"
-                aria-label="Close sample preview"
-              >
-                <X className="size-4" />
-              </button>
-            </div>
-
-            <div className="relative mt-3 flex items-center justify-center overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 max-h-[65vh]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={cloudinaryDeliveryUrl(currentSample.image, {
-                  width: 1000,
-                  quality: "good",
-                })}
-                alt={currentSample.title}
-                className="max-h-[60vh] w-auto object-contain rounded"
-              />
-            </div>
-
-            {currentSample.description && (
-              <p className="mt-3 text-xs sm:text-sm text-slate-600 text-center">
-                {currentSample.description}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

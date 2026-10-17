@@ -898,8 +898,8 @@ export function ProductHero({ product }: Props) {
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
                 <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-extrabold text-slate-900">Daily Tantrums:</strong>{" "}
-                  Fights, crying, and frustration whenever the phone is taken away.
+                  <strong className="font-extrabold text-slate-900">Severe Emotional Disconnect:</strong>{" "}
+                  Zombie-like staring, loss of eye contact, and severe anxiety or crying fits whenever the phone is taken away.
                 </div>
               </div>
 
@@ -908,8 +908,8 @@ export function ProductHero({ product }: Props) {
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
                 <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-extrabold text-slate-900">Delayed Handwriting:</strong>{" "}
-                  Weak pencil grip, poor motor control, and slow handwriting progress.
+                  <strong className="font-extrabold text-slate-900">Permanent Academic Lag:</strong>{" "}
+                  A complete lack of focus and severely delayed writing skills, leaving them permanently behind their classmates.
                 </div>
               </div>
             </div>
@@ -968,6 +968,10 @@ export function ProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
+            <p className="text-center text-[11px] sm:text-xs font-black tracking-tight text-red-600 flex items-center justify-center gap-1 leading-tight">
+              <span className="shrink-0" aria-hidden="true">⚠️</span>
+              <span>Stop your kid&apos;s screen addiction before it&apos;s too late. Get It Now</span>
+            </p>
             <StoreBuyCtaButton
               onClick={() => void handleBuy()}
               disabled={startingCheckout}

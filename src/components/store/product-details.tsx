@@ -2,7 +2,6 @@ import { Check, Plus, Star } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { ProductBusyParentsSection } from "@/components/store/product-busy-parents-section";
-import { ProductReviewFormLazy } from "@/components/store/product-review-form-lazy";
 import { ProductSamplesCarousel } from "@/components/store/product-samples-carousel";
 import { ProductStars } from "@/components/store/product-stars";
 import { ProductRefundGuaranteeSection } from "@/components/store/product-refund-guarantee-section";
@@ -19,6 +18,8 @@ export function ProductDetails({
 }) {
   return (
     <section className="store-details" aria-label="Product details">
+      <ProductBusyParentsSection />
+
       <article className="store-included">
         <h2
           className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1e40af]"
@@ -208,11 +209,8 @@ export function ProductDetails({
               </li>
             ))}
           </ul>
-          <ProductReviewFormLazy />
         </section>
       ) : null}
-
-      <ProductBusyParentsSection />
 
       <div className="store-details-split">
         <article>

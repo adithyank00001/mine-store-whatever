@@ -38,7 +38,7 @@ export function ProductBusyParentsSection() {
             </h3>
 
             <p className="mt-2 text-sm text-slate-600 leading-relaxed font-medium">
-              No teaching needed. Your child plays and learns independently while you relax or do your work.
+              Auto-engaging and easy to follow. Your child naturally builds skills without you having to explain a thing, giving you time to focus on your day.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export function ProductBusyParentsSection() {
             </h3>
 
             <p className="mt-2 text-sm text-slate-600 leading-relaxed font-medium">
-              No messy files. Everything is neatly sorted by age (Ages 2–8) in Google Drive for fast, 1-click access.
+              No messy files. Everything is neatly sorted by age for 1-click access.
             </p>
           </div>
 
