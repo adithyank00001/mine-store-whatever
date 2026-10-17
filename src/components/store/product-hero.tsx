@@ -854,8 +854,8 @@ export function ProductHero({ product }: Props) {
           </div>
 
           <h2
-            className="mt-8 text-center text-2xl font-black tracking-tight text-[#1e40af] sm:text-left sm:text-3xl"
-            style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
+            className="mt-8 text-center sm:text-left text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#1e40af] leading-tight"
+            style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
           >
             Happy Kids = Happy Parents
           </h2>
@@ -973,6 +973,7 @@ export function ProductHero({ product }: Props) {
               disabled={startingCheckout}
               busy={startingCheckout}
               buttonClassName="min-h-[2.85rem]"
+              pulse
             >
               {buyButtonText}
             </StoreBuyCtaButton>

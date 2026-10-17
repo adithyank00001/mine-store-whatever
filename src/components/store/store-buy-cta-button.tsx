@@ -18,6 +18,9 @@ type StoreBuyCtaButtonProps = {
   busy?: boolean;
   /** Extra classes on the inner button (e.g. min-height for sticky). */
   buttonClassName?: string;
+  className?: string;
+  /** Gentle pulse & light sweep animation for high-converting attention */
+  pulse?: boolean;
 };
 
 /** Shared orange store buy CTA — same look as sticky / main buy. */
@@ -27,9 +30,11 @@ export function StoreBuyCtaButton({
   disabled = false,
   busy = false,
   buttonClassName,
+  className,
+  pulse = false,
 }: StoreBuyCtaButtonProps) {
   return (
-    <div className={WRAPPER_CLASS}>
+    <div className={cn(WRAPPER_CLASS, pulse && "store-pulse-wrapper", className)}>
       <button
         type="button"
         onClick={onClick}
@@ -37,6 +42,9 @@ export function StoreBuyCtaButton({
         aria-busy={busy}
         className={cn(BUTTON_CLASS, buttonClassName)}
       >
+        {pulse && !disabled && !busy ? (
+          <span className="store-cta-shimmer" aria-hidden="true" />
+        ) : null}
         <span className="relative z-10 flex items-center gap-2 font-bold">
           {children}
           {!busy ? <ChevronRight className="size-4 shrink-0" strokeWidth={2.5} /> : null}
