@@ -207,6 +207,11 @@ export const panIndiaLeads2026: StoreProductConfig = {
   ],
   faqs: [
     {
+      question: "Will my child get bored of these worksheets?",
+      answer:
+        "No, because there is so much variety! If they get tired of tracing alphabets today, you can give them a fun maze or a coloring page tomorrow. With 15,000+ sheets, there is always a new, fun game to keep them away from the mobile phone.",
+    },
+    {
       question: "How will I get the worksheets?",
       answer:
         "You can download the PDF instantly right after your payment! We will also send the download link to your Email so you have it safe forever.",
@@ -225,11 +230,6 @@ export const panIndiaLeads2026: StoreProductConfig = {
       question: "Is ₹497 a one-time payment?",
       answer:
         "Yes, 100% one-time! There are no extra or hidden fees. You pay ₹497 just once and keep all 15,000+ worksheets forever.",
-    },
-    {
-      question: "Will my child get bored of these worksheets?",
-      answer:
-        "No, because there is so much variety! If they get tired of tracing alphabets today, you can give them a fun maze or a coloring page tomorrow. With 15,000+ sheets, there is always a new, fun game to keep them away from the mobile phone.",
     },
   ],
   buyButtonLabel: "GET THIS BUNDLE FOR MY CHILD",

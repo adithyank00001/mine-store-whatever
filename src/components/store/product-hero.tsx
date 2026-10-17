@@ -933,24 +933,21 @@ export function ProductHero({ product }: Props) {
                 <span>The Easy Solution</span>
               </div>
 
-              {/* Instantly Catching Attention Highlighted Dialogue */}
-              <div className="mt-3.5 rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 p-4 sm:p-5 shadow-sm text-slate-900">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl sm:text-3xl select-none leading-none mt-0.5">💬</span>
-                  <div className="space-y-2 text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
-                    <p>
-                      Instead of constantly saying{" "}
-                      <mark className="inline-block rounded-lg bg-amber-200/90 px-2 py-0.5 font-black text-slate-950 border border-amber-300 shadow-xs not-italic">
-                        “Put the phone away!”
-                      </mark>
-                    </p>
-                    <p className="font-extrabold text-slate-900">
-                      Give your child something they{" "}
-                      <mark className="inline-block rounded-lg bg-green-200 px-2 py-0.5 font-black text-green-950 border border-green-400 shadow-xs not-italic">
-                        actually WANT to do.
-                      </mark>
-                    </p>
-                  </div>
+              <div className="mt-3 flex items-start gap-3">
+                <span className="text-2xl sm:text-3xl select-none leading-none mt-0.5">💬</span>
+                <div className="space-y-2 text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
+                  <p>
+                    Instead of constantly saying{" "}
+                    <mark className="inline-block rounded-lg bg-amber-200/90 px-2 py-0.5 font-black text-slate-950 border border-amber-300 shadow-xs not-italic">
+                      “Put the phone away!”
+                    </mark>
+                  </p>
+                  <p className="font-extrabold text-slate-900">
+                    Give your child something they{" "}
+                    <mark className="inline-block rounded-lg bg-green-200 px-2 py-0.5 font-black text-green-950 border border-green-400 shadow-xs not-italic">
+                      actually WANT to do.
+                    </mark>
+                  </p>
                 </div>
               </div>
             </div>

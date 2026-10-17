@@ -223,7 +223,7 @@ export function ProductDetails({
             Easy to Use
           </h2>
 
-          <div className="mb-5 rounded-2xl border border-blue-200/90 bg-blue-50/70 p-4 sm:p-5 shadow-xs">
+          <div className="mb-5 rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
             <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-blue-800">
               🖨️ EASY TO USE
             </span>
