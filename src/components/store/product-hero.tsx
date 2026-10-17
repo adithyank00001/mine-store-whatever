@@ -4,9 +4,13 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  AlertCircle,
+  CheckCircle2,
   CircleCheck,
   Download,
   Lock,
+  Sparkles,
+  X,
   Zap,
   ZoomIn,
 } from "lucide-react";
@@ -850,56 +854,77 @@ export function ProductHero({ product }: Props) {
           <ProductVideo />
 
           {/* Problem & Solution Card */}
-          <div className="mt-8 space-y-4 rounded-2xl border border-amber-200/90 bg-gradient-to-b from-amber-50/40 via-white to-orange-50/30 p-5 shadow-sm sm:p-6">
-            <div>
-              <h3 className="flex items-center gap-2 text-xl font-black tracking-tight text-amber-950 sm:text-2xl">
-                <span className="text-2xl sm:text-3xl leading-none">🤔</span>
-                <span>DO YOU KNOW?</span>
-              </h3>
-              <p className="mt-2 text-[15px] font-bold leading-snug text-gray-900 sm:text-base">
-                Too much mobile phone is secretly hurting your child:
-              </p>
+          <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-700 border border-rose-200/80">
+                <AlertCircle className="size-3.5 text-rose-600" />
+                Parent Alert • Child Development
+              </span>
             </div>
 
-            {/* Negative Impacts - Separated Cards */}
-            <div className="space-y-2.5">
-              <div className="flex items-start gap-3 rounded-xl border border-red-100/90 bg-red-50/70 p-3 transition-colors hover:bg-red-50">
-                <span className="shrink-0 text-base leading-none" aria-hidden="true">❌</span>
-                <div className="text-sm leading-snug text-gray-800">
-                  <strong className="font-bold text-red-950">Weak Focus:</strong>{" "}
-                  <span>They cannot sit in one place or pay attention.</span>
+            <h3
+              className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-slate-900"
+              style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
+            >
+              Do You Know?
+            </h3>
+            <p className="mt-1.5 text-sm sm:text-base font-medium text-slate-600">
+              Excessive mobile screen time is secretly hurting your child&apos;s daily growth:
+            </p>
+
+            {/* Negative Impacts - Standardized Grid */}
+            <div className="mt-5 space-y-3">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+                  <X className="size-4" strokeWidth={2.5} />
+                </span>
+                <div className="text-sm leading-relaxed text-slate-700">
+                  <strong className="font-extrabold text-slate-900">Weak Focus:</strong>{" "}
+                  Cannot sit in one place, easily distracted, and struggles to pay attention.
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 rounded-xl border border-red-100/90 bg-red-50/70 p-3 transition-colors hover:bg-red-50">
-                <span className="shrink-0 text-base leading-none" aria-hidden="true">❌</span>
-                <div className="text-sm leading-snug text-gray-800">
-                  <strong className="font-bold text-red-950">Daily Anger:</strong>{" "}
-                  <span>They cry and fight when you take the phone away.</span>
+              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+                  <X className="size-4" strokeWidth={2.5} />
+                </span>
+                <div className="text-sm leading-relaxed text-slate-700">
+                  <strong className="font-extrabold text-slate-900">Daily Tantrums:</strong>{" "}
+                  Fights, crying, and frustration whenever the phone is taken away.
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 rounded-xl border border-red-100/90 bg-red-50/70 p-3 transition-colors hover:bg-red-50">
-                <span className="shrink-0 text-base leading-none" aria-hidden="true">❌</span>
-                <div className="text-sm leading-snug text-gray-800">
-                  <strong className="font-bold text-red-950">Slow Learning:</strong>{" "}
-                  <span>They struggle to hold a pencil, write, or learn fast.</span>
+              <div className="flex items-start gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:bg-slate-50 hover:border-slate-200">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200/60 mt-0.5">
+                  <X className="size-4" strokeWidth={2.5} />
+                </span>
+                <div className="text-sm leading-relaxed text-slate-700">
+                  <strong className="font-extrabold text-slate-900">Delayed Handwriting:</strong>{" "}
+                  Weak pencil grip, poor motor control, and slow handwriting progress.
                 </div>
               </div>
             </div>
 
             {/* The Easy Solution Card */}
-            <div className="rounded-xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50 via-emerald-50/80 to-emerald-100/40 p-4 shadow-sm">
-              <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-emerald-800">
-                <span>✅</span>
-                <span>The Easy Solution:</span>
+            <div className="mt-5 rounded-2xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/80 via-emerald-50/30 to-white p-5 sm:p-6 shadow-xs">
+              <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-emerald-800">
+                <CheckCircle2 className="size-4 text-emerald-600" />
+                <span>The Easy Solution</span>
               </div>
-              <p className="mt-1.5 text-sm font-bold text-emerald-950">
-                Stop fighting over the phone. Give them something more fun!
+              <p className="mt-2 text-base sm:text-lg font-black text-emerald-950">
+                Stop fighting over the phone. Give them something more exciting!
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-emerald-900/90">
-                These 15,000+ fun worksheets feel like a game. Your child will happily leave the phone to draw, play, and learn.
+              <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-emerald-900/90">
+                These 15,000+ fun worksheets feel like a game. Your child will happily leave the phone to color, solve mazes, and learn independently.
               </p>
+
+              <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-3 border-t border-emerald-200/60 text-xs font-bold text-emerald-800">
+                <span>✓ 100% Screen-Free</span>
+                <span>•</span>
+                <span>✓ Builds Pencil Grip</span>
+                <span>•</span>
+                <span>✓ Independent Learning</span>
+              </div>
             </div>
           </div>
         </section>

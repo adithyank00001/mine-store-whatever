@@ -51,6 +51,56 @@ export const panIndiaLeads2026: StoreProductConfig = {
       alt: "Corporate database includes B2B, B2C, doctors, exporters, real estate, and many more categories",
     },
   ],
+  samples: [
+    {
+      title: "Alphabet Adventure",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211951/1.png.webp",
+      badge: "🔤 Letters & Phonics",
+      description: "Letter tracing, phonics sounds & fun coloring activities",
+    },
+    {
+      title: "Match the Babies",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211951/6.png.webp",
+      badge: "🐣 Animal Pairs",
+      description: "Match mommy and baby animals while building logic",
+    },
+    {
+      title: "Count and Write",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211951/8.png.webp",
+      badge: "🔢 Numbers & Math",
+      description: "Early counting, number tracing and pencil control",
+    },
+    {
+      title: "Maze Game",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211952/15.png",
+      badge: "🧩 Logic & Focus",
+      description: "Exciting maze paths to sharpen concentration and problem solving",
+    },
+    {
+      title: "Learn Number",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211952/18.png",
+      badge: "✨ Early Math",
+      description: "Fun number recognition with visual objects and counting",
+    },
+    {
+      title: "Sight Word",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211952/21.png",
+      badge: "📖 Reading Skills",
+      description: "Essential sight words that jumpstart early reading readiness",
+    },
+    {
+      title: "Count & Circle",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211952/12.png",
+      badge: "🎯 Observation",
+      description: "Find, count, and circle objects to boost visual attention",
+    },
+    {
+      title: "Read & Learn Words",
+      image: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792211952/22.png",
+      badge: "🎨 Vocabulary",
+      description: "Connect pictures with words to expand active vocabulary",
+    },
+  ],
   options: [],
   defaultSelections: {},
   trustItems: [

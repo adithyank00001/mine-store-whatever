@@ -39,7 +39,16 @@ export type ProductReview = {
   rating?: number;
 };
 
+export type ProductSampleItem = {
+  title: string;
+  image: string;
+  badge?: string;
+  description?: string;
+};
+
 export type StoreProductContent = {
+  /** Optional interactive worksheet/product samples carousel */
+  samples?: ProductSampleItem[];
   /** Small brand name in the header */
   brandName: string;
   /** Small line above the title (buy box). Falls back to default if empty. */

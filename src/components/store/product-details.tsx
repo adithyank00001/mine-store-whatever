@@ -1,8 +1,11 @@
-import { Check, Plus, ShieldCheck } from "lucide-react";
+import { Check, Plus, ShieldCheck, Star } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { ProductBusyParentsSection } from "@/components/store/product-busy-parents-section";
 import { ProductReviewFormLazy } from "@/components/store/product-review-form-lazy";
+import { ProductSamplesCarousel } from "@/components/store/product-samples-carousel";
 import { ProductStars } from "@/components/store/product-stars";
+import { ProductValueComparison } from "@/components/store/product-value-comparison";
 import { StoreFinalCtaBuyButton } from "@/components/store/store-buy-cta-button";
 import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import type { StoreProductContent } from "@/lib/store/product-content";
@@ -91,6 +94,10 @@ export function ProductDetails({
         ) : null}
       </article>
 
+      {product.samples && product.samples.length > 0 ? (
+        <ProductSamplesCarousel samples={product.samples} />
+      ) : null}
+
       {product.description.length > 0 || product.useCases.length > 0 ? (
         <article className="store-about">
           <h2>About this product</h2>
@@ -116,8 +123,59 @@ export function ProductDetails({
       ) : null}
 
       {product.reviews.length > 0 ? (
-        <section className="store-reviews" aria-label="Customer reviews">
-          <h2>Customer reviews</h2>
+        <section
+          className="store-reviews"
+          aria-label="Why Parents & Teachers Love This Bundle"
+        >
+          {/* High-Converting Testimonials Heading & Trust Badge */}
+          <div className="mb-8 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 text-center shadow-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200/80">
+              <ShieldCheck className="size-3.5 text-emerald-600" />
+              Verified Community Feedback
+            </span>
+
+            <h2
+              className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900"
+              style={{ fontFamily: "var(--font-store-display), ui-serif, Georgia, serif" }}
+            >
+              Why Parents &amp; Teachers Love This Bundle ❤️
+            </h2>
+
+            {/* Standardized Trust Badge */}
+            <div className="mt-4 inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 rounded-2xl border border-amber-200/90 bg-amber-50/70 px-4 sm:px-6 py-2.5 shadow-xs">
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center text-amber-500">
+                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <Star className="size-4 fill-amber-400 text-amber-400" />
+                </div>
+                <span className="text-xs font-black text-amber-950">4.9 / 5.0</span>
+              </div>
+
+              <span className="hidden sm:inline text-amber-300">•</span>
+
+              <p className="text-xs sm:text-sm font-extrabold text-amber-950 tracking-tight">
+                ⭐⭐⭐⭐⭐ Trusted by 2400+ Happy Indian Parents &amp; 200+ Pre-Schools
+              </p>
+            </div>
+
+            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs font-semibold text-slate-500">
+              <span className="flex items-center gap-1 text-emerald-700">
+                <Check className="size-3.5 text-emerald-600" strokeWidth={2.5} />
+                100% Genuine Reviews
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1 text-slate-600">
+                Direct WhatsApp &amp; Email Feedback
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1 text-blue-700">
+                Pan-India Community
+              </span>
+            </div>
+          </div>
           <ul className="store-reviews-list">
             {product.reviews.map((review) => (
               <li
@@ -151,6 +209,10 @@ export function ProductDetails({
           <ProductReviewFormLazy />
         </section>
       ) : null}
+
+      <ProductBusyParentsSection />
+
+      <ProductValueComparison price={product.price} />
 
       <div className="store-details-split">
         <article>
