@@ -9,7 +9,7 @@ import { getWhatsAppHref } from "@/lib/marketing/whatsapp";
 export const metadata: Metadata = {
   title: `Contact — ${publicConfig.appName}`,
   description:
-    "Contact ByePanda support for kids learning bundle questions. Email byepanda.store@gmail.com or use the contact form.",
+    "Contact ByePanda support for kids learning bundle questions. Email support@byepanda.com or use the contact form.",
 };
 
 export default function ContactPage() {
@@ -25,10 +25,10 @@ export default function ContactPage() {
         <div className="rounded-lg border border-[#D8E2EC] bg-[#F7FAFC] px-4 py-4 sm:px-5">
           <p className="text-sm font-medium text-[var(--landing-navy)]">Email</p>
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="mt-1 inline-block text-[17px] font-semibold text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>
           <p className="mt-2 text-sm leading-relaxed text-[#5B6B7C]">
             Prefer the form? Fill it in below and we will receive your message at our

@@ -57,10 +57,10 @@ export default function RefundPolicyPage() {
           a corrupted PDF file, a missing download email, or a link that did not open—our
           team will promptly assist you. Please email us at{" "}
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>{" "}
           with your Order ID or Payment ID, and we will manually send you fresh, direct
           download links or email your files directly within 24 hours.
@@ -84,10 +84,10 @@ export default function RefundPolicyPage() {
           If you experience any issue with your purchase, please contact our support team
           first at{" "}
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>{" "}
           before initiating a dispute or chargeback with your bank or payment provider.
           We are committed to resolving customer issues quickly and ensuring you receive
@@ -100,10 +100,10 @@ export default function RefundPolicyPage() {
         <LegalP>
           For any questions concerning this Policy or for help with your order, contact us at:{" "}
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>{" "}
           or through our{" "}
           <a href="/contact" className="font-medium text-[var(--landing-orange)] hover:underline">

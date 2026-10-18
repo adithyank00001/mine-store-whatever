@@ -135,10 +135,10 @@ export default function TermsOfServicePage() {
         <LegalP>
           Notices and inquiries regarding these Terms may be directed to{" "}
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>{" "}
           or submitted through{" "}
           <a href="/contact" className="font-medium text-[var(--landing-orange)] hover:underline">

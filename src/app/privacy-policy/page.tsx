@@ -49,10 +49,10 @@ export default function PrivacyPolicyPage() {
         <LegalP>
           If you contact our support team via email (
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>
           ), WhatsApp, or through our contact form, we collect your message and contact
           details solely to respond to your inquiry and assist with your order.
@@ -115,10 +115,10 @@ export default function PrivacyPolicyPage() {
           requirements. To make a request or if you have any questions regarding this
           Privacy Policy, please contact us at:{" "}
           <a
-            href="mailto:byepanda.store@gmail.com"
+            href="mailto:support@byepanda.com"
             className="font-medium text-[var(--landing-orange)] hover:underline"
           >
-            byepanda.store@gmail.com
+            support@byepanda.com
           </a>{" "}
           or via our{" "}
           <a href="/contact" className="font-medium text-[var(--landing-orange)] hover:underline">

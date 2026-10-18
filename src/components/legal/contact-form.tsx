@@ -69,7 +69,7 @@ export function ContactForm() {
       setMessage("");
     } catch {
       setStatus("error");
-      setStatusText("Network error. Please email byepanda.store@gmail.com directly.");
+      setStatusText("Network error. Please email support@byepanda.com directly.");
     } finally {
       setSubmitting(false);
     }
