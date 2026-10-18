@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const landingPageTitle =
-  "Generate Unlimited Fresh B2B Leads | growscalex";
+  "15,000+ Printable Kids Learning Worksheets & Activity Bundles | ByePanda";
 
 export const landingPageDescription =
-  "Stop buying dead databases and paying monthly fees. Get the fastest, easiest, most affordable B2B lead generation software. Generate unlimited fresh B2B leads. Lifetime access for just ₹999.";
+  "15,000+ fun printable kids learning worksheets & activities for Ages 2–8. Reduce screen time with coloring, phonics, math, and daily brain puzzles. Instant digital download.";
 
 export const landingPageMetadata: Metadata = {
   title: {

@@ -56,10 +56,10 @@ export function LegalPageShell({
           <p className="text-[13px] text-[#8B9AAB]">
             Questions:{" "}
             <a
-              href="mailto:support@growscalex.com"
+              href="mailto:byepanda.store@gmail.com"
               className="font-medium text-[var(--landing-orange)] hover:underline"
             >
-              support@growscalex.com
+              byepanda.store@gmail.com
             </a>
             {" · "}
             <Link href="/contact" className="font-medium text-[var(--landing-orange)] hover:underline">

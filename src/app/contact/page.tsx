@@ -9,32 +9,30 @@ import { getWhatsAppHref } from "@/lib/marketing/whatsapp";
 export const metadata: Metadata = {
   title: `Contact — ${publicConfig.appName}`,
   description:
-    "Contact growscaleX support for digital product storefront questions. Email support@growscalex.com or use the contact form.",
+    "Contact ByePanda support for kids learning bundle questions. Email byepanda.store@gmail.com or use the contact form.",
 };
 
 export default function ContactPage() {
   return (
-    <LegalPageShell title="Contact" updated="18/09/2026">
+    <LegalPageShell title="Contact" updated="18/10/2026">
       <LegalP>
-        For transactional inquiries, delivery clarifications, and storefront
-        correspondence, reach the Operator at the channel below. For the
-        avoidance of doubt, contacting support does not create, revive, or
-        enlarge any refund entitlement beyond the narrow contingencies stated in
-        the Refund Policy.
+        For order inquiries, download assistance, and general customer support,
+        reach our team at the channels below. We are here to help you get the
+        most out of your child&apos;s learning bundle!
       </LegalP>
 
       <div className="space-y-3">
         <div className="rounded-lg border border-[#D8E2EC] bg-[#F7FAFC] px-4 py-4 sm:px-5">
           <p className="text-sm font-medium text-[var(--landing-navy)]">Email</p>
           <a
-            href="mailto:support@growscalex.com"
+            href="mailto:byepanda.store@gmail.com"
             className="mt-1 inline-block text-[17px] font-semibold text-[var(--landing-orange)] hover:underline"
           >
-            support@growscalex.com
+            byepanda.store@gmail.com
           </a>
           <p className="mt-2 text-sm leading-relaxed text-[#5B6B7C]">
-            Prefer the form? Fill it in and we will receive your message at the
-            same inbox.
+            Prefer the form? Fill it in below and we will receive your message at our
+            support inbox.
           </p>
         </div>
 
@@ -44,7 +42,7 @@ export default function ContactPage() {
           </p>
           <a
             href={getWhatsAppHref(
-              "Hi, I have a question about growscaleX support.",
+              "Hi, I have a question about the ByePanda Kids Learning Bundle.",
             )}
             target="_blank"
             rel="noopener noreferrer"
