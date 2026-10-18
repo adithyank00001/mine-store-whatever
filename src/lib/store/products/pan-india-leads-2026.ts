@@ -14,8 +14,8 @@ export const panIndiaLeads2026: StoreProductConfig = {
   topSelling: true,
   download: {
     relativePrivatePath:
-      "store/downloads/ALL-INDIA-COMPLETE-DATABASE-PACKAGE-BUNDLE-2026.pdf",
-    fileName: "ALL-INDIA-COMPLETE-DATABASE-PACKAGE-BUNDLE-2026.pdf",
+      "store/downloads/KIDS-LEARNING-BUNDLE-2026.pdf",
+    fileName: "KIDS-LEARNING-BUNDLE-2026.pdf",
     contentType: "application/pdf",
   },
   driveDownloadUrl: null,

@@ -567,9 +567,9 @@ export function ProductHero({ product }: Props) {
         key: data.keyId,
         amount: data.amount,
         currency: data.currency ?? "INR",
-        name: data.productName ?? product.brandName,
+        name: data.productName ?? "ByePanda",
         description:
-          data.description ?? "Complete payment to receive your leads database",
+          data.description ?? `Complete payment to download ${product.title}`,
         order_id: data.orderId,
         // No email/phone prefill — Razorpay collects both on checkout.
         handler: (response) => {

@@ -17,22 +17,22 @@ if (!key || !from) {
 const paymentId = `pay_local_test_${Date.now()}`;
 const downloadUrl = `${appUrl}/api/store/download?payment_id=${encodeURIComponent(paymentId)}`;
 const pdfPath = resolve(
-  "private/store/downloads/ALL-INDIA-COMPLETE-DATABASE-PACKAGE-BUNDLE-2026.pdf",
+  "private/store/downloads/KIDS-LEARNING-BUNDLE-2026.pdf",
 );
 const pdf = readFileSync(pdfPath);
 
 const text = [
   "Hi there,",
   "",
-  "Thanks for your purchase of 110Cr+ All India Latest Leads (PAN INDIA DATABASE) 2026.",
+  "Thank you very much for your purchase of 15,000+ Printable Kids Learning Bundle!",
   "",
-  "Amount: INR 397",
+  "Amount: INR 497",
   `Payment ID: ${paymentId}`,
   "",
-  "Your PDF package is attached.",
+  "Your 15,000+ printable kids worksheets & activities bundle PDF is attached to this email.",
   `Download link: ${downloadUrl}`,
   "",
-  "— growscaleX",
+  "— ByePanda",
 ].join("\n");
 
 const html = `
@@ -52,12 +52,12 @@ const response = await fetch("https://api.resend.com/emails", {
     from,
     to: [to],
     reply_to: to,
-    subject: "Your leads package is ready — local env test",
+    subject: "Your Kids Learning Bundle is ready! — local env test",
     text,
     html,
     attachments: [
       {
-        filename: "ALL-INDIA-COMPLETE-DATABASE-PACKAGE-BUNDLE-2026.pdf",
+        filename: "KIDS-LEARNING-BUNDLE-2026.pdf",
         content: pdf.toString("base64"),
         content_type: "application/pdf",
       },

@@ -126,12 +126,18 @@ export async function sendStorePurchaseEmail(
   const textLines = [
     `Hi ${firstName},`,
     "",
-    `Thanks for your purchase of ${productTitle}.`,
+    `Thank you very much for your purchase of ${productTitle}!`,
     "",
     `Amount: ${priceLabel}`,
     `Payment ID: ${paymentId}`,
     "",
-    "Your PDF package is attached to this email.",
+    "Your 15,000+ printable kids worksheets & activities bundle PDF is attached to this email.",
+    "",
+    "Simply open the attached PDF and click any category to download your files:",
+    "• Alphabet, Numbers, Math, Tracing & Handwriting",
+    "• Coloring Books, Mazes, Dot-to-Dot & Matching Games",
+    "• Phonics, Sight Words, Vocabulary & Spelling",
+    "• Daily Brain Puzzles, Science, Shapes & Flashcards",
   ];
 
   if (driveUrl) {
@@ -144,7 +150,7 @@ export async function sendStorePurchaseEmail(
 
   textLines.push(
     "",
-    `Questions? Reply to this email or contact ${serverEnv.contactInboxEmail}`,
+    `Need help or have questions? Reply to this email or contact ${serverEnv.contactInboxEmail}`,
     "",
     "— ByePanda",
   );
@@ -164,15 +170,20 @@ export async function sendStorePurchaseEmail(
 <html>
 <body style="font-family:Arial,Helvetica,sans-serif;line-height:1.5;color:#1a1a1a;max-width:560px;margin:0 auto;padding:24px;">
   <p>Hi ${escapeHtml(firstName)},</p>
-  <p>Thanks for your purchase of <strong>${escapeHtml(productTitle)}</strong>.</p>
-  <p style="margin:16px 0;padding:12px 16px;background:#f6f6f4;border-radius:8px;">
+  <p>Thank you very much for your purchase of <strong>${escapeHtml(productTitle)}</strong>!</p>
+  <p style="margin:16px 0;padding:12px 16px;background:#fef3c7;border:1px solid #fde68a;border-radius:8px;">
     <strong>Amount:</strong> ${escapeHtml(priceLabel)}<br/>
     <strong>Payment ID:</strong> ${escapeHtml(paymentId)}
   </p>
-  <p>Your PDF package is <strong>attached</strong> to this email.</p>
+  <p>Your 15,000+ printable kids worksheets &amp; activities bundle PDF is <strong>attached to this email</strong>.</p>
+  <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+    Open the attached PDF and click on any activity to download your high-resolution files (Alphabet, Numbers, Coloring, Phonics, Daily Puzzles, Tracing &amp; more).
+  </p>
   ${driveButtonHtml}
-  <p style="font-size:13px;color:#666;">Questions? Reply to this email or write to ${escapeHtml(serverEnv.contactInboxEmail)}</p>
-  <p>— ByePanda</p>
+  <p style="font-size:13px;color:#6b7280;margin-top:24px;border-top:1px solid #e5e7eb;padding-top:16px;">
+    Need help or have any questions? Reply directly to this email or write to <a href="mailto:${escapeHtml(serverEnv.contactInboxEmail)}" style="color:#d97706;font-weight:600;">${escapeHtml(serverEnv.contactInboxEmail)}</a>
+  </p>
+  <p style="margin-top:16px;">Happy Learning!<br/>— <strong>ByePanda Team</strong></p>
 </body>
 </html>`.trim();
 
@@ -183,7 +194,7 @@ export async function sendStorePurchaseEmail(
 
   const result = await sendResendEmail({
     to: toEmail,
-    subject: `Your leads package is ready — ${productTitle}`,
+    subject: `Your Kids Learning Bundle is ready! — ${productTitle}`,
     text: textLines.join("\n"),
     html,
     replyTo: serverEnv.contactInboxEmail,
