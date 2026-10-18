@@ -1141,6 +1141,7 @@ export async function checkSupabaseConnection() {
 
   try {
     const supabase = getSupabaseAdmin();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error } = await (supabase as any)
       .from("store_purchases")
       .select("id")

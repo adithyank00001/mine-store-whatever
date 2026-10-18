@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint src",
     "test:store-email": "node --env-file=.env.local scripts/test-store-purchase-email.mjs"
   },
   "dependencies": {

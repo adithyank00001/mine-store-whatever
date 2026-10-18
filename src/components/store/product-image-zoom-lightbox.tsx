@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { X, ZoomIn, ZoomOut } from "lucide-react";
 
@@ -23,7 +23,11 @@ export function ProductImageZoomLightbox({ src, alt, onClose }: Props) {
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const zoomRef = useRef(1);
   const offsetRef = useRef({ x: 0, y: 0 });
@@ -49,10 +53,6 @@ export function ProductImageZoomLightbox({ src, alt, onClose }: Props) {
       setOffset(nextOffset);
     }
   }
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
