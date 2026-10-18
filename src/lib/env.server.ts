@@ -59,8 +59,8 @@ export const serverEnv = {
   resendApiKey: readOptionalEnv("RESEND_API_KEY"),
   resendFromEmail:
     readOptionalEnv("RESEND_FROM_EMAIL") ??
-    "growscaleX Support <support@notification.growscalex.com>",
+    "ByePanda <notification@byepanda.com>",
   contactInboxEmail:
-    readOptionalEnv("CONTACT_INBOX_EMAIL") ?? "support@growscalex.com",
+    readOptionalEnv("CONTACT_INBOX_EMAIL") ?? "byepanda.store@gmail.com",
 } as const;
 

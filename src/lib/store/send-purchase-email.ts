@@ -144,9 +144,9 @@ export async function sendStorePurchaseEmail(
 
   textLines.push(
     "",
-    "Questions? Reply to this email or contact support@growscalex.com",
+    `Questions? Reply to this email or contact ${serverEnv.contactInboxEmail}`,
     "",
-    "— growscaleX",
+    "— ByePanda",
   );
 
   const driveButtonHtml = driveUrl
@@ -171,8 +171,8 @@ export async function sendStorePurchaseEmail(
   </p>
   <p>Your PDF package is <strong>attached</strong> to this email.</p>
   ${driveButtonHtml}
-  <p style="font-size:13px;color:#666;">Questions? Reply to this email or write to support@growscalex.com</p>
-  <p>— growscaleX</p>
+  <p style="font-size:13px;color:#666;">Questions? Reply to this email or write to ${escapeHtml(serverEnv.contactInboxEmail)}</p>
+  <p>— ByePanda</p>
 </body>
 </html>`.trim();
 
