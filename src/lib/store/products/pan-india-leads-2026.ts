@@ -23,7 +23,7 @@ export const panIndiaLeads2026: StoreProductConfig = {
   brandName: "Verified Seller",
   title: "15,000+ Printable Kids Learning Bundle",
   subtitle: "Less Screen Time. A Smarter, Happier Child.",
-  price: 497,
+  price: 1,
   compareAtPrice: 4997,
   currency: "INR",
   currencySymbol: "₹",
