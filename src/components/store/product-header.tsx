@@ -14,11 +14,6 @@ export function ProductHeader({ brandName }: { brandName: string }) {
             {brandName}
           </Link>
         </div>
-        <nav className="flex items-center gap-5 text-sm text-[var(--store-muted)]">
-          <Link href="/contact" className="hover:text-[var(--store-ink)]">
-            Contact
-          </Link>
-        </nav>
       </div>
     </header>
   );

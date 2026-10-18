@@ -29,9 +29,6 @@ export function ShopHomePage() {
             </span>
           </div>
           <nav className="flex items-center gap-4 text-sm text-[var(--store-muted)] font-medium">
-            <Link href={featuredPath} className="hover:text-[var(--store-ink)]">
-              Activity Bundle
-            </Link>
             <Link href="/contact" className="hover:text-[var(--store-ink)]">
               Contact
             </Link>
