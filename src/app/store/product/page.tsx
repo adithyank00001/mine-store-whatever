@@ -6,7 +6,7 @@ import { storeProduct } from "@/lib/store/product-content";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "15,000+ Printable Kids Learning Bundle | growscaleX Store",
+    absolute: "15,000+ Printable Kids Learning Bundle | ByePanda",
   },
   description:
     "15,000+ printable kids learning worksheets covering reading, math, and brain skills. Instant Google Drive delivery. Secure checkout with Razorpay.",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "15,000+ Printable Kids Learning Bundle | growscaleX Store",
+    title: "15,000+ Printable Kids Learning Bundle | ByePanda",
     description:
       "15,000+ printable worksheets for kids — early reading, math & brain skills. Instant download.",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "15,000+ Printable Kids Learning Bundle | growscaleX Store",
+    title: "15,000+ Printable Kids Learning Bundle | ByePanda",
     description:
       "15,000+ printable kids worksheets — reading, math & brain skills. Instant download. From ₹497.",
     images: storeProduct.images[0] ? [storeProduct.images[0].src] : undefined,

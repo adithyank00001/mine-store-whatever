@@ -30,6 +30,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(`${appOrigin}/`),
   title: publicConfig.appName,
   description: publicConfig.productTagline,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
 };
 
 const metaPixelBootstrapScript = getMetaPixelBootstrapScript();

@@ -8,7 +8,7 @@ import type { StoreProductConfig } from "@/lib/store/product-content";
 export const usaLeads: StoreProductConfig = {
   slug: "usa-leads",
   contentId: "usa-leads",
-  published: true,
+  published: false,
 
   catalogSubtitle:
     "300+ industries · Instant Excel & CSV download · 3 premium bonuses included",

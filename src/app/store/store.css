@@ -40,24 +40,32 @@
 }
 
 .store-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 30;
-  backdrop-filter: blur(14px);
-  background: rgba(247, 248, 251, 0.82);
+  background: rgba(247, 248, 251, 0.95);
   border-bottom: 1px solid rgba(228, 231, 236, 0.9);
 }
 
 .store-header-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  min-width: 0;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .store-header-logo {
-  height: 1.15rem !important;
+  height: 25px !important;
   width: auto !important;
+  aspect-ratio: 1024 / 190 !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .store-header-logo {
+    height: 28px !important;
+  }
 }
 
 .store-brand {
