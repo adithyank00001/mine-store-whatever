@@ -888,7 +888,7 @@ export function ProductHero({ product }: Props) {
 
             {/* Negative Impacts - Light Cards */}
             <div className="mt-5 space-y-3">
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
@@ -898,7 +898,7 @@ export function ProductHero({ product }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
@@ -908,7 +908,7 @@ export function ProductHero({ product }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md">
+              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
                   <X className="size-4" strokeWidth={2.5} />
                 </span>
@@ -973,14 +973,15 @@ export function ProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
-            <p className="text-center text-sm sm:text-base font-black tracking-tight text-red-600 leading-tight">
+            <p className="text-center lg:text-left text-sm sm:text-base font-black tracking-tight text-red-600 leading-tight">
               Stop your kid&apos;s screen addiction before it&apos;s too late.
             </p>
             <StoreBuyCtaButton
               onClick={() => void handleBuy()}
               disabled={startingCheckout}
               busy={startingCheckout}
-              buttonClassName="min-h-[2.85rem]"
+              buttonClassName="min-h-[2.85rem] px-5 sm:px-6"
+              className="w-full lg:w-auto lg:min-w-[15rem] lg:shrink-0"
               pulse
             >
               {buyButtonText}

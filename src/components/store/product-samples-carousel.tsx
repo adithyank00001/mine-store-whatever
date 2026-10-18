@@ -75,14 +75,36 @@ export function ProductSamplesCarousel({
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
-  // Continuous auto-sliding every 3 seconds
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Keyboard navigation for desktop PC users
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        prevSlide();
+      } else if (e.key === "ArrowRight") {
+        nextSlide();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [items.length]);
+
+  // Continuous auto-sliding every 3 seconds (pauses on desktop hover)
+  useEffect(() => {
+    if (isHovered) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % items.length);
     }, 3000);
 
     return () => clearInterval(timer);
-  }, [items.length]);
+  }, [items.length, isHovered]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -124,7 +146,11 @@ export function ProductSamplesCarousel({
       </div>
 
       {/* Sliding Carousel Stage */}
-      <div className="mt-6 mx-auto w-full max-w-md sm:max-w-lg">
+      <div
+        className="mt-6 mx-auto w-full max-w-md sm:max-w-lg lg:max-w-xl"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="relative rounded-3xl p-4 sm:p-6 store-carousel-3d-box">
           {/* Card Header: Badge + Counter */}
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">

@@ -40,7 +40,7 @@ export function ProductDetails({
             src="/store/activities-included.jpg"
             alt="Fun & Engaging Activities Included in the 15,000+ Learning Bundle"
             className="w-full h-auto object-contain"
-            loading="eager"
+            loading="lazy"
             decoding="async"
           />
         </div>
