@@ -25,12 +25,17 @@ export const track = (
   options: Record<string, unknown> = {},
   eventOptions: TrackEventOptions = {},
 ) => {
-  if (eventOptions.eventID) {
-    window.fbq?.("track", name, options, { eventID: eventOptions.eventID });
+  const eventName = typeof name === "string" ? name.trim() : "";
+  if (!eventName) {
     return;
   }
 
-  window.fbq?.("track", name, options);
+  if (eventOptions.eventID) {
+    window.fbq?.("track", eventName, options, { eventID: eventOptions.eventID });
+    return;
+  }
+
+  window.fbq?.("track", eventName, options);
 };
 
 /**
@@ -94,7 +99,9 @@ export function setPixelUserData(data: {
   }
 
   try {
-    window.fbq?.("set", "userData", payload);
+    if (FB_PIXEL_ID) {
+      window.fbq?.("init", FB_PIXEL_ID, payload);
+    }
   } catch {
     // Pixel must never break checkout.
   }

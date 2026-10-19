@@ -47,14 +47,15 @@ var paths=${pathsJson};
 var names=${namesJson};
 var path=location.pathname||"/";
 if(path.indexOf("/api")===0)return;
+var cleanPath=(path.length>1&&path.charAt(path.length-1)==="/")?path.slice(0,-1):path;
 var allowed=false;
-for(var i=0;i<paths.length;i++){if(paths[i]===path){allowed=true;break;}}
+for(var i=0;i<paths.length;i++){if(paths[i]===cleanPath){allowed=true;break;}}
 if(!allowed)return;
 var rawSearch=location.search||"";
 var query=rawSearch.charAt(0)==="?"?rawSearch.slice(1):rawSearch;
-var key=query?path+"?"+query:path;
+var key=query?cleanPath+"?"+query:cleanPath;
 var eventId=(typeof crypto!=="undefined"&&crypto.randomUUID)?crypto.randomUUID():("evt_"+Date.now()+"_"+Math.random().toString(36).slice(2,11));
-var contentName=names[path]||null;
+var contentName=names[cleanPath]||null;
 var customData=contentName?{content_name:contentName}:{};
 window.__LEADCX_META__={initialPageViewKey:key,initialPageViewEventId:eventId,pixelBootstrapped:true,pixelPageViewQueued:true,capiPageViewSent:false};
 try{
@@ -86,6 +87,7 @@ document.cookie="_fbc="+fbc+"; Path=/; Max-Age=7776000; SameSite=Lax"+secure;
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];}(window);
+fbq('set','autoConfig',false,'${pixelId}');
 fbq('init','${pixelId}');
 fbq('track','PageView',customData,{eventID:eventId});
 }catch(e){}})();`;

@@ -50,7 +50,7 @@ export function buildStorePurchaseCustomData(input: StorePurchaseMetaInput) {
     content_ids: [input.productSlug],
     content_name: input.productTitle,
     content_type: "product",
-    content_category: "digital_leads_database",
+    content_category: "kids_learning_bundle",
     num_items: quantity,
     contents: [
       {

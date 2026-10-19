@@ -38,7 +38,7 @@ export const serverEnv = {
   dodoPaymentsWebhookKey: readOptionalEnv("DODO_PAYMENTS_WEBHOOK_KEY"),
   dodoPaymentsEnvironment:
     readOptionalEnv("DODO_PAYMENTS_ENVIRONMENT") ?? "test_mode",
-  /** One-time digital store product (PAN India leads). */
+  /** One-time digital store product (Kids Learning Bundle). */
   dodoStoreProductId: readOptionalEnv("DODO_STORE_PRODUCT_ID"),
   dodoPaymentsReturnUrl: readOptionalEnv("DODO_PAYMENTS_RETURN_URL"),
   /** Optional Google Drive URL shown on /store/success as backup download. */

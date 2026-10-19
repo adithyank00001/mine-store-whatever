@@ -23,7 +23,7 @@ function storeContentPayload(input: {
     content_name: contentName,
     content_ids: contentIds,
     content_type: "product",
-    content_category: "digital_leads_database",
+    content_category: "kids_learning_bundle",
     contents: contentIds.map((id) => ({
       id,
       quantity,
@@ -34,7 +34,7 @@ function storeContentPayload(input: {
 
 /**
  * Product page viewed — Pixel + CAPI ViewContent (same event_id).
- * Fire once when the PAN India product page loads.
+ * Fire once when the Kids Learning Bundle product page loads.
  */
 export function trackStoreViewContent(input?: {
   value?: number;

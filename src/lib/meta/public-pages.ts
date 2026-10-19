@@ -17,8 +17,8 @@ const STORE_SLUG_PRODUCT_PATH = /^\/store\/product\/([a-z0-9-]+)$/;
 
 /** Friendly labels for Meta PageView custom_data.content_name */
 export const META_PAGE_CONTENT_NAMES: Record<string, string> = {
-  "/": "Digital Products Store Home",
-  "/store/product": "PAN India Leads Database Product",
+  "/": "Kids Learning Bundle Store Home",
+  "/store/product": "15,000+ Printable Kids Learning Bundle",
   "/store/success": "Store Purchase Success",
   "/contact": "Contact",
   "/privacy-policy": "Privacy Policy",
@@ -26,12 +26,20 @@ export const META_PAGE_CONTENT_NAMES: Record<string, string> = {
   "/refund-policy": "Refund Policy",
 };
 
+function normalizePath(pathname: string): string {
+  if (!pathname) return "/";
+  return pathname.length > 1 && pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname;
+}
+
 export function isPublicMetaPagePath(pathname: string): boolean {
   if (!pathname || pathname.startsWith("/api/")) {
     return false;
   }
 
-  return PUBLIC_PAGE_EXACT.has(pathname) || STORE_SLUG_PRODUCT_PATH.test(pathname);
+  const clean = normalizePath(pathname);
+  return PUBLIC_PAGE_EXACT.has(clean) || STORE_SLUG_PRODUCT_PATH.test(clean);
 }
 
 /** Friendly content_name for a public page path, or null if unknown. */
@@ -40,12 +48,13 @@ export function getMetaPageContentName(pathname: string): string | null {
     return null;
   }
 
-  const exact = META_PAGE_CONTENT_NAMES[pathname];
+  const clean = normalizePath(pathname);
+  const exact = META_PAGE_CONTENT_NAMES[clean];
   if (exact) {
     return exact;
   }
 
-  const slug = STORE_SLUG_PRODUCT_PATH.exec(pathname)?.[1];
+  const slug = STORE_SLUG_PRODUCT_PATH.exec(clean)?.[1];
   return slug ? `Store Product: ${slug}` : null;
 }
 

@@ -101,7 +101,7 @@ export function MetaPixelPurchase({
           ? {
               content_ids: ids,
               content_type: "product",
-              content_category: "digital_leads_database",
+              content_category: "kids_learning_bundle",
               contents: ids.map((id) => ({
                 id,
                 quantity,
