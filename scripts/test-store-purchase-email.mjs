@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 
 const from = process.env.RESEND_FROM_EMAIL;
 const key = process.env.RESEND_API_KEY;
-const to = process.env.CONTACT_INBOX_EMAIL || "support@growscalex.com";
+const to = process.env.CONTACT_INBOX_EMAIL || "byepanda.store@gmail.com";
 const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(
   /\/+$/,
   "",
@@ -46,7 +46,7 @@ const response = await fetch("https://api.resend.com/emails", {
   headers: {
     Authorization: `Bearer ${key}`,
     "Content-Type": "application/json",
-    "Idempotency-Key": `store-purchase-email-${paymentId}`,
+    "Idempotency-Key": `byepanda-purchase-email-${paymentId}`,
   },
   body: JSON.stringify({
     from,

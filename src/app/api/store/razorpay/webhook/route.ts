@@ -60,6 +60,15 @@ export async function POST(request: Request) {
       const paymentId = payment.id;
       const orderId = payment.order_id;
 
+      // In multi-store Razorpay accounts, verify the order belongs to ByePanda
+      const noteSlug = payment.notes?.product_slug?.trim();
+      if (noteSlug && noteSlug !== "kids-bundle") {
+        return NextResponse.json({
+          ok: true,
+          ignored: "Order belongs to another store.",
+        });
+      }
+
       // Fetch full payment for name + any fields webhook payload omitted.
       const razorpayCustomer = await fetchRazorpayPaymentCustomer(paymentId);
 
@@ -70,6 +79,13 @@ export async function POST(request: Request) {
         customerPhone: razorpayCustomer.phone ?? payment.contact ?? null,
         customerName: razorpayCustomer.name,
       });
+
+      if (purchase.product_slug !== "kids-bundle") {
+        return NextResponse.json({
+          ok: true,
+          ignored: "Order belongs to another store.",
+        });
+      }
 
       const email =
         purchase.customer_email ??

@@ -192,13 +192,26 @@ export async function sendStorePurchaseEmail(
   );
   const toDomain = toEmail.includes("@") ? toEmail.split("@")[1] : "unknown";
 
+  if (input.productSlug && input.productSlug !== "kids-bundle") {
+    console.info(
+      JSON.stringify({
+        level: "info",
+        route: "store/purchase-email",
+        message: `Purchase email skipped for non-ByePanda product: ${input.productSlug}`,
+        paymentId,
+        timestamp: new Date().toISOString(),
+      }),
+    );
+    return;
+  }
+
   const result = await sendResendEmail({
     to: toEmail,
     subject: `Your Kids Learning Bundle is ready! — ${productTitle}`,
     text: textLines.join("\n"),
     html,
     replyTo: serverEnv.contactInboxEmail,
-    idempotencyKey: `store-purchase-email-${paymentId}`,
+    idempotencyKey: `byepanda-purchase-email-${paymentId}`,
     attachments: attachment ? [attachment] : undefined,
   });
 
