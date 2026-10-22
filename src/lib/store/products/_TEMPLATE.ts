@@ -50,7 +50,7 @@ export const templateProduct: StoreProductConfig = {
   currencySymbol: "₹",
 
   // ---------- Top of page ----------
-  brandName: "Verified Seller",
+  brandName: "Trusted Seller",
   title: "Your Product Title",
   subtitle: "One sentence under the title.",
   rating: 4.8,

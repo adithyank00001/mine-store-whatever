@@ -27,7 +27,7 @@ export const hniDatabase: StoreProductConfig = {
   currency: "INR",
   currencySymbol: "₹",
 
-  brandName: "Verified Seller",
+  brandName: "Trusted Seller",
   title: "India HNI Database — High-Net-Worth Contacts (Sample)",
   subtitle:
     "Get a focused list of high-income Indian contacts to pitch premium products, investments, and high-ticket offers.",

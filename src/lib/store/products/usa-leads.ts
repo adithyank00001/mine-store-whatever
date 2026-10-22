@@ -27,7 +27,7 @@ export const usaLeads: StoreProductConfig = {
   currency: "INR",
   currencySymbol: "₹",
 
-  brandName: "Verified Seller",
+  brandName: "Trusted Seller",
   eyebrow: "Land High-Paying US Clients Today:",
   title: "Get 10 Lakh+ Verified USA B2B Leads Database (Latest Edition)",
   subtitleLead: "Ready to start closing clients who pay in dollars?",

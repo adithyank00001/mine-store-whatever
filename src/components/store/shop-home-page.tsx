@@ -25,7 +25,7 @@ export function ShopHomePage() {
             <BrandLogo href="/" size="sm" className="store-header-logo" />
             <span className="store-brand store-verified-badge">
               <BadgeCheck className="size-4 shrink-0 text-amber-500" aria-hidden />
-              Verified Kids Store
+              Trusted Seller
             </span>
           </div>
           <nav className="flex items-center gap-4 text-sm text-[var(--store-muted)] font-medium">

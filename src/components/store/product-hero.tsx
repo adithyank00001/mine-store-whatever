@@ -567,7 +567,7 @@ export function ProductHero({ product }: Props) {
         key: data.keyId,
         amount: data.amount,
         currency: data.currency ?? "INR",
-        name: data.productName ?? "Verified Seller",
+        name: data.productName ?? "Trusted Seller",
         description:
           data.description ?? `Complete payment to download ${product.title}`,
         order_id: data.orderId,
