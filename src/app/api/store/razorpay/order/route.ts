@@ -146,7 +146,7 @@ export async function POST(request: Request) {
       amount: order.amount,
       currency: order.currency,
       keyId: getRazorpayKeyId(),
-      productName: "ByePanda",
+      productName: "Verified Seller",
       description: `Complete payment to download ${product.title}`,
       ...(email ? { email } : {}),
     });
