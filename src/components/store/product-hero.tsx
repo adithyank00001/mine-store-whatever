@@ -389,7 +389,7 @@ export function ProductHero({ product }: Props) {
   const buyLabel = product.buyButtonLabel;
   const buyButtonText = startingCheckout ? "Opening checkout…" : buyLabel;
   const stickyBuyLabel =
-    product.stickyBuyButtonLabel ?? "Get This Learning Worksheets (₹199)";
+    product.stickyBuyButtonLabel ?? "Get Learning Worksheets (₹199)";
   const stickyBuyButtonText = startingCheckout
     ? "Opening checkout…"
     : stickyBuyLabel;

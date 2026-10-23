@@ -209,7 +209,7 @@ export const panIndiaLeads2026: StoreProductConfig = {
     },
   ],
   buyButtonLabel: "GET THIS BUNDLE FOR MY CHILD",
-  stickyBuyButtonLabel: "Get This Learning Worksheets (₹199)",
+  stickyBuyButtonLabel: "Get Learning Worksheets (₹199)",
   secondaryButtonLabel: "Add to cart",
   buyUrl: "#buy",
   footerNote: "Pay securely with Razorpay",
