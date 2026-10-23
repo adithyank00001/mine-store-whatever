@@ -388,6 +388,11 @@ export function ProductHero({ product }: Props) {
   const lineTotal = unitPrice * quantity;
   const buyLabel = product.buyButtonLabel;
   const buyButtonText = startingCheckout ? "Opening checkout…" : buyLabel;
+  const stickyBuyLabel =
+    product.stickyBuyButtonLabel ?? "Get This Learning Worksheets (₹199)";
+  const stickyBuyButtonText = startingCheckout
+    ? "Opening checkout…"
+    : stickyBuyLabel;
 
   const viewContentSent = useRef(false);
 
@@ -980,11 +985,11 @@ export function ProductHero({ product }: Props) {
               onClick={() => void handleBuy()}
               disabled={startingCheckout}
               busy={startingCheckout}
-              buttonClassName="min-h-[2.85rem] px-5 sm:px-6"
+              buttonClassName="min-h-[2.85rem] px-4 sm:px-6 text-[15px] sm:text-base"
               className="w-full lg:w-auto lg:min-w-[15rem] lg:shrink-0"
               pulse
             >
-              {buyButtonText}
+              {stickyBuyButtonText}
             </StoreBuyCtaButton>
             {payError ? (
               <p

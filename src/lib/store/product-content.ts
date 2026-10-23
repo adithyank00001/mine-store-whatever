@@ -120,6 +120,8 @@ export type StoreProductContent = {
   };
   /** Primary buy button */
   buyButtonLabel: string;
+  /** Sticky buy button label override (optional) */
+  stickyBuyButtonLabel?: string;
   /** Secondary button */
   secondaryButtonLabel: string;
   /**
