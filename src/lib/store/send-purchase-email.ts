@@ -123,22 +123,40 @@ export async function sendStorePurchaseEmail(
     toEmail.split("@")[0] ||
     "there";
 
-  const textLines = [
-    `Hi ${firstName},`,
-    "",
-    `Thank you very much for your purchase of ${productTitle}!`,
-    "",
-    `Amount: ${priceLabel}`,
-    `Payment ID: ${paymentId}`,
-    "",
-    "Your 15,000+ printable kids worksheets & activities bundle PDF is attached to this email.",
-    "",
-    "Simply open the attached PDF and click any category to download your files:",
-    "• Alphabet, Numbers, Math, Tracing & Handwriting",
-    "• Coloring Books, Mazes, Dot-to-Dot & Matching Games",
-    "• Phonics, Sight Words, Vocabulary & Spelling",
-    "• Daily Brain Puzzles, Science, Shapes & Flashcards",
-  ];
+  const isKidsBundle =
+    !input.productSlug ||
+    input.productSlug === "kids-bundle" ||
+    input.productSlug === "pan-india-leads-2026";
+
+  const textLines = isKidsBundle
+    ? [
+        `Hi ${firstName},`,
+        "",
+        `Thank you very much for your purchase of ${productTitle}!`,
+        "",
+        `Amount: ${priceLabel}`,
+        `Payment ID: ${paymentId}`,
+        "",
+        "Your 15,000+ printable kids worksheets & activities bundle PDF is attached to this email.",
+        "",
+        "Simply open the attached PDF and click any category to download your files:",
+        "• Alphabet, Numbers, Math, Tracing & Handwriting",
+        "• Coloring Books, Mazes, Dot-to-Dot & Matching Games",
+        "• Phonics, Sight Words, Vocabulary & Spelling",
+        "• Daily Brain Puzzles, Science, Shapes & Flashcards",
+      ]
+    : [
+        `Hi ${firstName},`,
+        "",
+        `Thank you very much for your purchase of ${productTitle}!`,
+        "",
+        `Amount: ${priceLabel}`,
+        `Payment ID: ${paymentId}`,
+        "",
+        "Your download package PDF is attached to this email.",
+        "",
+        "Simply open the attached PDF to access your instant downloads and all included resources.",
+      ];
 
   if (driveUrl) {
     textLines.push(
@@ -165,6 +183,16 @@ export async function sendStorePurchaseEmail(
   <p style="font-size:13px;color:#666;">If the button does not work, copy this link:<br/>${escapeHtml(driveUrl)}</p>`
     : "";
 
+  const bundleDescriptionHtml = isKidsBundle
+    ? `  <p>Your 15,000+ printable kids worksheets &amp; activities bundle PDF is <strong>attached to this email</strong>.</p>
+  <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+    Open the attached PDF and click on any activity to download your high-resolution files (Alphabet, Numbers, Coloring, Phonics, Daily Puzzles, Tracing &amp; more).
+  </p>`
+    : `  <p>Your package PDF for <strong>${escapeHtml(productTitle)}</strong> is <strong>attached to this email</strong>.</p>
+  <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+    Open the attached PDF to access your instant downloads and all included resources.
+  </p>`;
+
   const html = `
 <!DOCTYPE html>
 <html>
@@ -175,10 +203,7 @@ export async function sendStorePurchaseEmail(
     <strong>Amount:</strong> ${escapeHtml(priceLabel)}<br/>
     <strong>Payment ID:</strong> ${escapeHtml(paymentId)}
   </p>
-  <p>Your 15,000+ printable kids worksheets &amp; activities bundle PDF is <strong>attached to this email</strong>.</p>
-  <p style="color:#4b5563;font-size:14px;line-height:1.6;">
-    Open the attached PDF and click on any activity to download your high-resolution files (Alphabet, Numbers, Coloring, Phonics, Daily Puzzles, Tracing &amp; more).
-  </p>
+${bundleDescriptionHtml}
   ${driveButtonHtml}
   <p style="font-size:13px;color:#6b7280;margin-top:24px;border-top:1px solid #e5e7eb;padding-top:16px;">
     Need help or have any questions? Reply directly to this email or write to <a href="mailto:${escapeHtml(serverEnv.contactInboxEmail)}" style="color:#d97706;font-weight:600;">${escapeHtml(serverEnv.contactInboxEmail)}</a>
@@ -192,12 +217,14 @@ export async function sendStorePurchaseEmail(
   );
   const toDomain = toEmail.includes("@") ? toEmail.split("@")[1] : "unknown";
 
-  if (input.productSlug && input.productSlug !== "kids-bundle") {
+  const isKnownProduct =
+    getStoreProductForPurchaseSlug(input.productSlug) !== null;
+  if (input.productSlug && !isKnownProduct) {
     console.info(
       JSON.stringify({
         level: "info",
         route: "store/purchase-email",
-        message: `Purchase email skipped for non-ByePanda product: ${input.productSlug}`,
+        message: `Purchase email skipped for non-store product: ${input.productSlug}`,
         paymentId,
         timestamp: new Date().toISOString(),
       }),
@@ -205,9 +232,13 @@ export async function sendStorePurchaseEmail(
     return;
   }
 
+  const subject = isKidsBundle
+    ? `Your Kids Learning Bundle is ready! — ${productTitle}`
+    : `Your download package is ready! — ${productTitle}`;
+
   const result = await sendResendEmail({
     to: toEmail,
-    subject: `Your Kids Learning Bundle is ready! — ${productTitle}`,
+    subject,
     text: textLines.join("\n"),
     html,
     replyTo: serverEnv.contactInboxEmail,

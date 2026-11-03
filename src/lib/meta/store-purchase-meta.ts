@@ -43,6 +43,11 @@ export function buildStorePurchaseCustomData(input: StorePurchaseMetaInput) {
   const currency = (input.currency || "INR").toUpperCase();
   const orderId = input.orderId?.trim() || input.paymentId;
 
+  const isKids =
+    input.productSlug === "kids-bundle" ||
+    input.productSlug === "pan-india-leads-2026";
+  const contentCategory = isKids ? "kids_learning_bundle" : "digital_content";
+
   return {
     value,
     currency,
@@ -50,7 +55,7 @@ export function buildStorePurchaseCustomData(input: StorePurchaseMetaInput) {
     content_ids: [input.productSlug],
     content_name: input.productTitle,
     content_type: "product",
-    content_category: "kids_learning_bundle",
+    content_category: contentCategory,
     num_items: quantity,
     contents: [
       {

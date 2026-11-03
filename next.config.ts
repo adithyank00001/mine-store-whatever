@@ -25,6 +25,25 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/1m-reels-bundle",
+        destination: "/store/product/1m-reels-bundle",
+        permanent: false,
+      },
+      {
+        source: "/sample-product",
+        destination: "/store/product/1m-reels-bundle",
+        permanent: false,
+      },
+      {
+        source: "/store/sample-product",
+        destination: "/store/product/1m-reels-bundle",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

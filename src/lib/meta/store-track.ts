@@ -16,6 +16,11 @@ function storeContentPayload(input: {
   const contentName = input.contentName ?? STORE_PRODUCT_NAME;
   const itemPrice = quantity > 0 ? input.value / quantity : input.value;
 
+  const isKids = contentIds.some(
+    (id) => id === "kids-bundle" || id === "pan-india-leads-2026",
+  );
+  const contentCategory = isKids ? "kids_learning_bundle" : "digital_content";
+
   return {
     value: input.value,
     currency: "INR" as const,
@@ -23,7 +28,7 @@ function storeContentPayload(input: {
     content_name: contentName,
     content_ids: contentIds,
     content_type: "product",
-    content_category: "kids_learning_bundle",
+    content_category: contentCategory,
     contents: contentIds.map((id) => ({
       id,
       quantity,

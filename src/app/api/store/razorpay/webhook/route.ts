@@ -11,6 +11,7 @@ import {
   getMetaAttributionFromPurchase,
   markStorePurchasePaid,
 } from "@/lib/store/purchases";
+import { getStoreProductForPurchaseSlug } from "@/lib/store/products";
 import { fetchRazorpayPaymentCustomer } from "@/lib/store/razorpay-customer";
 import { sendStorePurchaseEmail } from "@/lib/store/send-purchase-email";
 import { verifyRazorpayWebhookSignature } from "@/lib/store/verify";
@@ -60,9 +61,9 @@ export async function POST(request: Request) {
       const paymentId = payment.id;
       const orderId = payment.order_id;
 
-      // In multi-store Razorpay accounts, verify the order belongs to ByePanda
+      // In multi-store Razorpay accounts, verify the order belongs to this store
       const noteSlug = payment.notes?.product_slug?.trim();
-      if (noteSlug && noteSlug !== "kids-bundle") {
+      if (noteSlug && !getStoreProductForPurchaseSlug(noteSlug)) {
         return NextResponse.json({
           ok: true,
           ignored: "Order belongs to another store.",
@@ -80,7 +81,7 @@ export async function POST(request: Request) {
         customerName: razorpayCustomer.name,
       });
 
-      if (purchase.product_slug !== "kids-bundle") {
+      if (!getStoreProductForPurchaseSlug(purchase.product_slug)) {
         return NextResponse.json({
           ok: true,
           ignored: "Order belongs to another store.",

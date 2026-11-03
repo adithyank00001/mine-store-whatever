@@ -57,6 +57,37 @@ Types live in `src/lib/store/product-content.ts`.
 
 ---
 
+## Designing an Isolated Product Page (Custom UI per Product)
+
+Every product in this store can have a **completely unique, isolated page design** without affecting any other product.
+
+### How it works:
+- **Shared Technical Backend**: All Razorpay checkout, Meta CAPI & Pixel tracking, order generation, verification, and countdown timers are powered by shared hooks (`useProductCheckout`, `useOfferTimer`) and shared components (`OfferCountdown`, `RazorpayLogo`).
+- **Completely Isolated UI**: Each product can have its own dedicated UI folder under `src/components/store/products/<slug>/`. Editing HTML, CSS, Tailwind classes, or layout for one product will **never affect** any other product.
+
+### Steps to give a product a custom, isolated design:
+1. **Duplicate the starter template**:
+   Copy `src/components/store/templates/default-product/` to `src/components/store/products/<your-slug>/`.
+   Rename files to match your slug (e.g. `<slug>-product-page.tsx`, `<slug>-product-hero.tsx`, `<slug>-product-details.tsx`).
+2. **Register your custom page**:
+   In `src/components/store/products/registry.tsx`, import your page and add it to `PRODUCT_PAGE_REGISTRY`:
+   ```ts
+   import { YourProductPage } from "@/components/store/products/your-slug/your-product-page";
+
+   export const PRODUCT_PAGE_REGISTRY = {
+     "kids-bundle": KidsProductPage,
+     "sample-product": SampleProductPage,
+     "your-slug": YourProductPage, // <-- Add here
+   };
+   ```
+3. **Design freely**:
+   You can freely rearrange sections, write custom CSS, add new interactive widgets, change grids, or redesign the hero.
+   Keep `useProductCheckout(product)` attached to your buy button so Razorpay checkout and Meta tracking remain 100% rock-solid.
+
+*(Note: If you do not register a custom page component, `/store/product/<slug>` will safely render the standard `DefaultProductPage` out of the box).*
+
+---
+
 ## Step-by-step: create a new product
 
 ### 1) Copy the template

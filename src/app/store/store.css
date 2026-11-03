@@ -1128,11 +1128,11 @@
 .store-faq h2,
 .store-included h2,
 .store-about h2 {
-  font-family: var(--font-store-display), Fredoka, ui-rounded, sans-serif;
-  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
-  font-weight: 800;
+  font-family: var(--font-store-display), ui-serif, Georgia, serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  color: #1e40af;
+  color: var(--store-ink);
   margin-bottom: 1rem;
 }
 
@@ -2758,4 +2758,50 @@
     animation: none !important;
   }
 }
+
+/* ============================================================
+   Kids Learning Bundle Scoped Theme Styles
+   Preserves 100% of the custom design for the live ads page /store/product
+   ============================================================ */
+.store-kids-theme .store-details h2,
+.store-kids-theme .store-faq h2,
+.store-kids-theme .store-included h2,
+.store-kids-theme .store-about h2,
+.store-kids-theme .store-reviews h2 {
+  font-family: var(--font-kids-display), Fredoka, ui-rounded, sans-serif !important;
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1e40af !important;
+}
+
+.store-kids-theme .store-hero-title {
+  font-family: var(--font-kids-display), Fredoka, ui-rounded, sans-serif !important;
+}
+
+/* ============================================================
+   Sample Reels Infinite Auto-Moving Carousel Track
+   ============================================================ */
+@keyframes sampleReelsScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.sample-reels-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.85rem;
+  animation: sampleReelsScroll 34s linear infinite;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  contain: layout paint;
+}
+
+
+
 

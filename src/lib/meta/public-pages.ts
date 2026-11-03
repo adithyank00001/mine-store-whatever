@@ -19,6 +19,8 @@ const STORE_SLUG_PRODUCT_PATH = /^\/store\/product\/([a-z0-9-]+)$/;
 export const META_PAGE_CONTENT_NAMES: Record<string, string> = {
   "/": "Kids Learning Bundle Store Home",
   "/store/product": "15,000+ Printable Kids Learning Bundle",
+  "/store/product/1m-reels-bundle": "1 Million+ Viral Reels Bundle",
+  "/store/product/sample-product": "1 Million+ Viral Reels Bundle",
   "/store/success": "Store Purchase Success",
   "/contact": "Contact",
   "/privacy-policy": "Privacy Policy",

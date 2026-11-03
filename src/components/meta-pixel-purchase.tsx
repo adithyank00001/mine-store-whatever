@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 
-import { publicConfig } from "@/lib/config";
 import { setPixelUserData, track } from "@/lib/fbpixel";
 import { ensureBrowserFbcCookie } from "@/lib/meta/fbc";
 
@@ -91,6 +90,11 @@ export function MetaPixelPurchase({
       // Cookie write must never break Purchase tracking.
     }
 
+    const isKids = ids?.some(
+      (id) => id === "kids-bundle" || id === "pan-india-leads-2026",
+    );
+    const contentCategory = isKids ? "kids_learning_bundle" : "digital_content";
+
     track(
       "Purchase",
       {
@@ -101,7 +105,7 @@ export function MetaPixelPurchase({
           ? {
               content_ids: ids,
               content_type: "product",
-              content_category: "kids_learning_bundle",
+              content_category: contentCategory,
               contents: ids.map((id) => ({
                 id,
                 quantity,

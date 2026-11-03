@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
-import { StoreProductPage } from "@/components/store/product-page";
+import { ProductPageDispatcher } from "@/components/store/products/registry";
 import {
   getStoreProductBySlug,
   LIVE_ADS_PRODUCT_PATH,
@@ -24,9 +24,12 @@ function getSlugProduct(slug: string) {
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return storeProducts
+  const base = storeProducts
     .filter((product) => product.slug !== LIVE_ADS_PRODUCT_SLUG)
     .map((product) => ({ slug: product.slug }));
+
+  // Ensure both sample-product and 1m-reels-bundle are prerendered
+  return [...base, { slug: "sample-product" }, { slug: "1m-reels-bundle" }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -75,5 +78,5 @@ export default async function StoreSlugProductPage({ params }: Props) {
   if (!product) {
     notFound();
   }
-  return <StoreProductPage product={product} />;
+  return <ProductPageDispatcher slug={slug} product={product} />;
 }

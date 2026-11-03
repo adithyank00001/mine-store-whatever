@@ -1,16 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  AlertCircle,
-  CheckCircle2,
   CircleCheck,
   Download,
   Lock,
   Sparkles,
-  X,
   Zap,
   ZoomIn,
 } from "lucide-react";
@@ -19,7 +15,6 @@ import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import { ProductImage } from "@/components/store/product-image";
 import { ProductStars } from "@/components/store/product-stars";
 import { StoreBuyCtaButton } from "@/components/store/store-buy-cta-button";
-import { ProductVideo } from "@/components/store/product-video";
 import {
   trackStoreInitiateCheckout,
   trackStoreViewContent,
@@ -389,7 +384,7 @@ export function ProductHero({ product }: Props) {
   const buyLabel = product.buyButtonLabel;
   const buyButtonText = startingCheckout ? "Opening checkout…" : buyLabel;
   const stickyBuyLabel =
-    product.stickyBuyButtonLabel ?? "Get Learning Worksheets (₹199)";
+    product.stickyBuyButtonLabel ?? product.buyButtonLabel;
   const stickyBuyButtonText = startingCheckout
     ? "Opening checkout…"
     : stickyBuyLabel;
@@ -677,23 +672,8 @@ export function ProductHero({ product }: Props) {
             <ProductStars rating={product.rating} />
             <span className="text-sm text-[var(--store-muted)]">
               {product.rating.toFixed(1)} ·{" "}
-              {formatReviewCount(product.reviewCount)} Happy Parents
+              {formatReviewCount(product.reviewCount)} reviews
             </span>
-          </div>
-
-          <div className="store-before-after mt-4 mix-blend-multiply">
-            <Image
-              src={cloudinaryDeliveryUrl(
-                "https://res.cloudinary.com/ntv0bhpy/image/upload/v1792164333/BEFORE_1.png",
-                { width: 900, quality: "eco" },
-              )}
-              alt="Before: screen addiction vs After: happy engaged learning"
-              width={938}
-              height={675}
-              className="h-auto w-full object-contain"
-              priority
-              unoptimized
-            />
           </div>
 
           <ul className="store-highlights">
@@ -863,105 +843,19 @@ export function ProductHero({ product }: Props) {
             </div>
           </div>
 
-          <h2
-            className="mt-8 text-center sm:text-left text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#1e40af] leading-tight"
-            style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
-          >
-            Happy Kids = Happy Parents
-          </h2>
-
-          <ProductVideo />
-
-          {/* Problem & Solution Card (Dark Background Theme) */}
-          <div className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-6 sm:p-7 shadow-xl text-white">
-            <div className="flex items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-950/80 px-3 py-1 text-xs font-bold text-rose-300 border border-rose-800/80">
-                <AlertCircle className="size-3.5 text-rose-400" />
-                Parent Alert • Child Development
-              </span>
-            </div>
-
-            <h3
-              className="mt-3 text-center text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight"
-              style={{ fontFamily: "var(--font-store-display), Fredoka, ui-rounded, sans-serif" }}
-            >
-              Do You Know?
-            </h3>
-            <p className="mt-1.5 text-center text-sm sm:text-base font-medium text-slate-300">
-              Excessive mobile screen time is secretly hurting your child&apos;s daily growth:
-            </p>
-
-            {/* Negative Impacts - Light Cards */}
-            <div className="mt-5 space-y-3">
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
-                  <X className="size-4" strokeWidth={2.5} />
-                </span>
-                <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-extrabold text-slate-900">Weak Focus:</strong>{" "}
-                  Cannot sit in one place, easily distracted, and struggles to pay attention.
+          {product.trustItems && product.trustItems.length > 0 ? (
+            <div className="store-trust">
+              {product.trustItems.map((item) => (
+                <div key={item.title} className="store-trust-item">
+                  <Sparkles className="size-4 shrink-0 text-[var(--store-accent)] mt-0.5" />
+                  <div>
+                    <p>{item.title}</p>
+                    <span>{item.description}</span>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
-                  <X className="size-4" strokeWidth={2.5} />
-                </span>
-                <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-extrabold text-slate-900">Severe Emotional Disconnect:</strong>{" "}
-                  Zombie-like staring, loss of eye contact, and severe anxiety or crying fits whenever the phone is taken away.
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 rounded-2xl border border-white/90 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 border border-rose-200 mt-0.5">
-                  <X className="size-4" strokeWidth={2.5} />
-                </span>
-                <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-extrabold text-slate-900">Permanent Academic Lag:</strong>{" "}
-                  A complete lack of focus and severely delayed writing skills, leaving them permanently behind their classmates.
-                </div>
-              </div>
+              ))}
             </div>
-
-            {/* Downward pointing thick block arrow in normal green color towards the solution box */}
-            <div className="my-3 sm:my-3.5 flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-10 sm:size-12 text-[#22c55e] drop-shadow-md"
-                aria-hidden="true"
-              >
-                <path d="M12 22l-9-9h5V2h8v11h5L12 22z" />
-              </svg>
-            </div>
-
-            {/* The Easy Solution Card (White Background & Normal White Border) */}
-            <div className="rounded-2xl border border-white/90 bg-white p-5 sm:p-6 shadow-md text-slate-900">
-              <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-green-700">
-                <CheckCircle2 className="size-4 text-green-600" />
-                <span>The Easy Solution</span>
-              </div>
-
-              <div className="mt-3 flex items-start gap-3">
-                <span className="text-2xl sm:text-3xl select-none leading-none mt-0.5">💬</span>
-                <div className="space-y-2 text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
-                  <p>
-                    Instead of constantly saying{" "}
-                    <mark className="inline-block rounded-lg bg-amber-200/90 px-2 py-0.5 font-black text-slate-950 border border-amber-300 shadow-xs not-italic">
-                      “Put the phone away!”
-                    </mark>
-                  </p>
-                  <p className="font-extrabold text-slate-900">
-                    Give your child something they{" "}
-                    <mark className="inline-block rounded-lg bg-green-200 px-2 py-0.5 font-black text-green-950 border border-green-400 shadow-xs not-italic">
-                      actually WANT to do.
-                    </mark>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          ) : null}
         </section>
       </div>
 
@@ -978,9 +872,11 @@ export function ProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
-            <p className="text-center lg:text-left text-sm sm:text-base font-black tracking-tight text-red-600 leading-tight">
-              Stop your kid&apos;s screen addiction before it&apos;s too late.
-            </p>
+            {product.socialProofTag ? (
+              <p className="text-center lg:text-left text-xs sm:text-sm font-semibold text-[var(--store-muted)] leading-tight">
+                {product.socialProofTag}
+              </p>
+            ) : null}
             <StoreBuyCtaButton
               onClick={() => void handleBuy()}
               disabled={startingCheckout}

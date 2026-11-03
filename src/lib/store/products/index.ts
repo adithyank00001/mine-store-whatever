@@ -8,6 +8,7 @@
 import type { StoreProductConfig } from "@/lib/store/product-content";
 import { hniDatabase } from "@/lib/store/products/hni-database";
 import { panIndiaLeads2026 } from "@/lib/store/products/pan-india-leads-2026";
+import { sampleProduct } from "@/lib/store/products/sample-product";
 import { usaLeads } from "@/lib/store/products/usa-leads";
 
 /**
@@ -54,6 +55,7 @@ const REGISTERED_PRODUCTS: StoreProductConfig[] = [
   panIndiaLeads2026,
   usaLeads,
   hniDatabase,
+  sampleProduct,
 ];
 
 export const storeProducts: StoreProductConfig[] =
@@ -86,7 +88,19 @@ export function getStoreProductBySlug(
   if (!slug) {
     return null;
   }
-  return productsBySlug.get(slug.trim()) ?? null;
+  const clean = slug.trim();
+  const direct = productsBySlug.get(clean);
+  if (direct) {
+    return direct;
+  }
+  // Backward compatibility alias for sample-product and 1m-reels-bundle
+  if (clean === "sample-product") {
+    return productsBySlug.get("1m-reels-bundle") ?? sampleProduct;
+  }
+  if (clean === "1m-reels-bundle") {
+    return productsBySlug.get("sample-product") ?? sampleProduct;
+  }
+  return null;
 }
 
 /**

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { StoreProductPage } from "@/components/store/product-page";
+import { KidsProductPage } from "@/components/store/kids/kids-product-page";
 /** Live ads product — always /store/product. Content: products/kids-bundle.ts */
 import { storeProduct } from "@/lib/store/product-content";
 
@@ -37,5 +37,5 @@ export const metadata: Metadata = {
 };
 
 export default function StoreProductRoutePage() {
-  return <StoreProductPage product={storeProduct} />;
+  return <KidsProductPage product={storeProduct} />;
 }
