@@ -5,7 +5,7 @@ import { ProductStars } from "@/components/store/product-stars";
 import { StoreFinalCtaBuyButton } from "@/components/store/store-buy-cta-button";
 import { cloudinaryDeliveryUrl } from "@/lib/store/cloudinary";
 import type { StoreProductContent } from "@/lib/store/product-content";
-import { formatReviewCount } from "@/lib/store/product-format";
+import { formatMoney, formatReviewCount } from "@/lib/store/product-format";
 
 import { SampleReelsCarousel } from "./sample-reels-carousel";
 
@@ -472,17 +472,21 @@ export function SampleProductDetails({
             >
               <span className="inline-flex items-center gap-2">
                 <span>Download Now</span>
-                <span className="font-black text-white">₹99</span>
-                <del
-                  className="line-through decoration-white text-white/80 text-xs sm:text-sm font-bold"
-                  style={{
-                    textDecoration: "line-through",
-                    textDecorationThickness: "2px",
-                    textDecorationColor: "#ffffff",
-                  }}
-                >
-                  ₹2,999
-                </del>
+                <span className="font-black text-white">
+                  {formatMoney(product.price, product.currencySymbol)}
+                </span>
+                {product.compareAtPrice ? (
+                  <del
+                    className="line-through decoration-white text-white/80 text-xs sm:text-sm font-bold"
+                    style={{
+                      textDecoration: "line-through",
+                      textDecorationThickness: "2px",
+                      textDecorationColor: "#ffffff",
+                    }}
+                  >
+                    {formatMoney(product.compareAtPrice, product.currencySymbol)}
+                  </del>
+                ) : null}
               </span>
             </StoreFinalCtaBuyButton>
             <div className="flex justify-center items-center pt-2">

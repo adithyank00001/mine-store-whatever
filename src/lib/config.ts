@@ -4,7 +4,7 @@
  */
 export const publicConfig = {
   appName: "ByePanda",
-  productTagline: "15,000+ Printable Kids Learning Worksheets & Activity Bundles",
+  productTagline: "Premium Digital Products & Bundles",
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "https://www.byepanda.com",
   gtmId: process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-NTK43VFS",
 } as const;

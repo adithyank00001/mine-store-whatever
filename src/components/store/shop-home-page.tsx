@@ -12,10 +12,6 @@ import {
 
 export function ShopHomePage() {
   const publishedProducts = getPublishedStoreProducts();
-  const featuredProduct = publishedProducts[0];
-  const featuredPath = featuredProduct
-    ? getStoreProductPath(featuredProduct)
-    : "/store/product";
 
   return (
     <div className="store-root shop-home min-h-screen flex flex-col justify-between">
@@ -39,99 +35,48 @@ export function ShopHomePage() {
       <main className="flex-1 py-8 sm:py-12">
         {/* Hero Section */}
         <section className="shop-hero w-full">
-          <div className="store-shell shop-hero-inner">
+          <div className="store-shell shop-hero-inner shop-hero-inner-simple">
             <div className="shop-hero-copy">
               <p className="store-eyebrow flex items-center gap-1.5">
                 <Sparkles className="size-4 text-amber-500" aria-hidden />
-                Ages 2–8 · Printable Learning Worksheets
+                Official Digital Store · Instant Delivery
               </p>
               <h1 className="shop-hero-title">
-                Your Kid&apos;s Growth Starts From Here
+                ByePanda Store
               </h1>
               <p className="shop-hero-subtitle">
-                Less screen time. A smarter, happier child. 15,000+ printable
-                coloring pages, phonics, numbers, handwriting, math & daily
-                brain puzzles for instant home learning.
+                Explore our curated collection of premium digital products, creative bundles,
+                and high-value resources. Instant download, lifetime access, and secure checkout.
               </p>
               <div className="shop-hero-actions">
-                <Link
-                  href={featuredPath}
+                <a
+                  href="#products"
                   className="store-btn store-btn-primary shop-hero-btn"
                 >
-                  Get 15,000+ Bundle — {featuredProduct ? formatMoney(featuredProduct.price, featuredProduct.currencySymbol) : "₹497"}
-                </Link>
-                <Link href={featuredPath} className="shop-hero-secondary">
-                  View preview samples &rarr;
-                </Link>
+                  Explore Products &darr;
+                </a>
               </div>
 
               {/* Quick trust points */}
-              <div className="mt-8 grid grid-cols-2 gap-3 text-xs sm:text-sm text-[var(--store-muted)]">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm text-[var(--store-muted)] max-w-2xl">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
-                  <span>Instant PDF download</span>
+                  <span>Instant digital download</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
-                  <span>Organized for Ages 2–8</span>
+                  <span>Verified premium quality</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
-                  <span>Print unlimited times</span>
+                  <span>100% secure checkout</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
-                  <span>Lifetime access</span>
+                  <span>Lifetime access &amp; updates</span>
                 </div>
               </div>
             </div>
-
-            {/* Featured Product Hero Card */}
-            {featuredProduct ? (
-              <Link
-                href={featuredPath}
-                className="shop-hero-feature"
-                aria-label={`View ${featuredProduct.title}`}
-              >
-                <div className="shop-hero-feature-media">
-                  <ProductImage
-                    src={featuredProduct.images[0]?.src || ""}
-                    alt={featuredProduct.images[0]?.alt || featuredProduct.title}
-                    priority
-                    fit="cover"
-                    sizes="(max-width: 960px) 100vw, 480px"
-                  />
-                </div>
-                <div className="shop-hero-feature-meta">
-                  <p className="shop-hero-feature-label">
-                    🔥 {featuredProduct.badge || "Top Selling Bundle"}
-                  </p>
-                  <h2>{featuredProduct.title}</h2>
-                  <p className="text-sm text-[var(--store-muted)] mt-1 line-clamp-2">
-                    {featuredProduct.catalogSubtitle || featuredProduct.subtitle}
-                  </p>
-                  <div className="flex items-center gap-1.5 mt-2">
-                    <ProductStars rating={featuredProduct.rating} />
-                    <span className="text-xs font-semibold text-[var(--store-muted)]">
-                      {featuredProduct.rating.toFixed(1)} ({featuredProduct.reviewCount.toLocaleString()}+ parents)
-                    </span>
-                  </div>
-                  <div className="mt-3 flex items-baseline gap-2">
-                    <span className="text-xl font-bold text-[var(--store-ink)]">
-                      {formatMoney(featuredProduct.price, featuredProduct.currencySymbol)}
-                    </span>
-                    {featuredProduct.compareAtPrice ? (
-                      <span className="text-sm text-[var(--store-muted)] line-through">
-                        {formatMoney(featuredProduct.compareAtPrice, featuredProduct.currencySymbol)}
-                      </span>
-                    ) : null}
-                    <span className="ml-auto text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
-                      Instant Access
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ) : null}
           </div>
         </section>
 
@@ -140,9 +85,9 @@ export function ShopHomePage() {
           <section className="shop-products mt-8 sm:mt-12" id="products">
             <div className="store-shell">
               <div className="shop-products-head">
-                <h2>Featured Learning Bundles</h2>
+                <h2>Featured Products &amp; Bundles</h2>
                 <p>
-                  {publishedProducts.length} package available · Instant digital delivery
+                  {publishedProducts.length} {publishedProducts.length === 1 ? "package" : "packages"} available · Instant digital delivery
                 </p>
               </div>
               <div className="shop-grid">
@@ -190,7 +135,7 @@ export function ShopHomePage() {
                           ) : null}
                         </div>
                         <div className="shop-card-cta">
-                          <span>View bundle &amp; samples</span>
+                          <span>View bundle</span>
                           <span aria-hidden>&rarr;</span>
                         </div>
                       </div>
