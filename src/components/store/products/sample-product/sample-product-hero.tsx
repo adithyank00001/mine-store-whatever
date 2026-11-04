@@ -129,12 +129,12 @@ export function SampleProductHero({ product }: Props) {
               {product.eyebrow.trim()}
             </p>
           ) : null}
-          <h1 className="store-title !text-xl sm:!text-2xl lg:!text-3xl !font-sans !font-black uppercase !tracking-tight !text-slate-900 !leading-snug">
+          <h1 className="store-title !text-[26px] sm:!text-[34px] lg:!text-[40px] !font-sans !font-black uppercase !tracking-tight !text-slate-900 !leading-[1.15]">
             {product.title}
           </h1>
 
           {/* Trust Sub-headline Checklist Row */}
-          <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs sm:text-[13px] font-bold text-slate-700">
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] sm:text-sm font-bold text-slate-700">
             {[
               "Lifetime Access",
               "One-Time Payment",
@@ -151,7 +151,7 @@ export function SampleProductHero({ product }: Props) {
             ))}
           </div>
 
-          <h3 className="store-subtitle-heading !text-sm sm:!text-[15px] lg:!text-base !font-bold !text-slate-900 !leading-relaxed !mt-2.5">
+          <h3 className="store-subtitle-heading !text-base sm:!text-[17px] lg:!text-xl !font-bold !text-slate-900 !leading-relaxed !mt-3.5">
             {product.subtitle}
           </h3>
 
