@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap");
+
 :root {
+  --font-kids-display: "Fredoka", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --store-paper: #f3f5f8;
   --store-surface: #ffffff;
   --store-ink: #101828;

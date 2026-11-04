@@ -1,10 +1,10 @@
-import { Fraunces, Fredoka, Manrope } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 
 /**
  * Store fonts:
  * Fraunces: Original editorial serif for all standard digital products.
  * Manrope: Clean modern sans-serif for body typography across all products.
- * Fredoka: Playful rounded display font scoped specifically for the kids learning product page.
+ * Fredoka: Scoped rounded display font for the kids bundle, loaded via Google Fonts in store.css.
  */
 export const storeDisplayFont = Fraunces({
   subsets: ["latin"],
@@ -18,11 +18,9 @@ export const storeSansFont = Manrope({
   display: "swap",
 });
 
-export const kidsDisplayFont = Fredoka({
-  subsets: ["latin"],
-  variable: "--font-kids-display",
-  display: "swap",
-  weight: ["500", "600", "700"],
-});
+export const kidsDisplayFont = {
+  variable: "",
+  className: "",
+};
 
-export const storeFontVariables = `${storeDisplayFont.variable} ${storeSansFont.variable} ${kidsDisplayFont.variable}`;
+export const storeFontVariables = `${storeDisplayFont.variable} ${storeSansFont.variable}`;
