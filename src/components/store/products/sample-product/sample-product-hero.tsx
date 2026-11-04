@@ -226,12 +226,19 @@ export function SampleProductHero({ product }: Props) {
                     const subText = hasColon
                       ? cleanText.slice(colonIdx + 1).trim()
                       : null;
+                    const isWeeklyUpdate = /weekly updated/i.test(text);
                     return (
                       <span className="store-highlight-text">
                         {badge ? (
                           <span className="store-highlight-badge">{badge}</span>
                         ) : null}
-                        <span className="store-highlight-heading">
+                        <span
+                          className={`store-highlight-heading ${
+                            isWeeklyUpdate
+                              ? "!text-emerald-600 !font-black"
+                              : ""
+                          }`}
+                        >
                           {headingText}
                         </span>
                         {subText ? (
@@ -363,11 +370,11 @@ export function SampleProductHero({ product }: Props) {
               </div>
             </div>
 
-            {/* 100% Money-Back Guaranteed Trust Badge */}
+            {/* 7-Days Money Back Guarantee Trust Badge */}
             <div className="mt-3 flex items-center justify-center gap-2.5 rounded-2xl border-2 border-emerald-300/90 bg-emerald-50/95 py-2.5 sm:py-3 px-4 text-center shadow-xs">
               <ShieldCheck className="size-5 sm:size-6 shrink-0 text-emerald-600" strokeWidth={2.5} />
               <span className="text-sm sm:text-base font-black text-emerald-950 tracking-tight">
-                100% Money-Back Guaranteed
+                7-Days Money Back Guarantee
               </span>
             </div>
           </div>

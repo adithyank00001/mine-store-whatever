@@ -368,63 +368,17 @@ export function SampleReelsCarousel() {
       className="w-full max-w-full overflow-hidden my-6 sm:my-8 select-none"
       aria-label="Sample Reels Carousel"
     >
-      {/* Header with Title and Prev/Next Navigation */}
-      <div className="mb-4 sm:mb-5 select-none flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 border border-emerald-200 mb-2">
-            🎬 Live Preview
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 font-sans">
-            Sample Reels
-          </h2>
-          <p className="mt-1 text-sm sm:text-base text-slate-600">
-            Preview high-retention, ready-to-post HD reels included in the bundle.
-          </p>
-        </div>
-
-        {/* Carousel Prev/Next Buttons */}
-        <div className="flex items-center gap-2 self-start sm:self-end">
-          <button
-            type="button"
-            onClick={() => {
-              goToPrev();
-              setIsInteracting(true);
-              resumeAutoplayDelayed();
-            }}
-            aria-label="Previous reel"
-            className="size-9 sm:size-10 rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition"
-          >
-            <svg
-              className="size-4 sm:size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              goToNext();
-              setIsInteracting(true);
-              resumeAutoplayDelayed();
-            }}
-            aria-label="Next reel"
-            className="size-9 sm:size-10 rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition"
-          >
-            <svg
-              className="size-4 sm:size-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+      {/* Header */}
+      <div className="mb-4 sm:mb-5 select-none">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-black uppercase tracking-wider text-emerald-800 border border-emerald-200 mb-2">
+          🎬 Live Preview
+        </span>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 font-sans">
+          Sample Reels
+        </h2>
+        <p className="mt-1 text-sm sm:text-base text-slate-600">
+          Preview high-retention, ready-to-post HD reels included in the bundle.
+        </p>
       </div>
 
       {/* Touch-Friendly Hardware-Accelerated Viewport */}
@@ -554,7 +508,7 @@ export function SampleReelsCarousel() {
         {/* Tip text */}
         <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
           <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Swipe or tap any reel to preview • Autoplays smoothly</span>
+          <span>Autoplays continuously in Full HD</span>
         </div>
       </div>
     </section>

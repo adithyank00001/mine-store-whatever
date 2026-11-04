@@ -451,7 +451,7 @@ export function SampleProductDetails({
         </div>
         <div className="flex-1">
           <h3 className="text-lg font-bold text-[var(--store-ink)]">
-            100% Money-Back Guaranteed
+            7-Days Money Back Guarantee
           </h3>
           <p className="mt-1 text-sm text-[var(--store-muted)]">
             Access link is generated on your screen immediately upon successful checkout and also

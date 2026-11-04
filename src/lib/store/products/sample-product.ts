@@ -42,7 +42,7 @@ export const sampleProduct: StoreProductConfig = {
   socialProofTag: "🔥 50+ downloaded yesterday!",
   highlights: [
     "1,000,000+ Reels videos",
-    "Weekly updated video - Free",
+    "Weekly updated video - FREE",
     "Content covering 30+ popular niches",
     "HD-quality video content",
     "Faceless content suitable for short-form platforms",
