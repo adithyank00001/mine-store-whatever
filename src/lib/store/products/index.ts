@@ -6,10 +6,28 @@
  */
 
 import type { StoreProductConfig } from "@/lib/store/product-content";
-import { hniDatabase } from "@/lib/store/products/hni-database";
 import { panIndiaLeads2026 } from "@/lib/store/products/pan-india-leads-2026";
 import { sampleProduct } from "@/lib/store/products/sample-product";
-import { usaLeads } from "@/lib/store/products/usa-leads";
+
+/**
+ * Valid ByePanda store product slugs.
+ * Used to strictly verify incoming Razorpay webhook/verify orders belong to ByePanda.
+ */
+export const BYEPANDA_PRODUCT_SLUGS = [
+  "kids-bundle",
+  "1m-reels-bundle",
+  "sample-product",
+] as const;
+
+export function isByePandaProductSlug(slug: string | null | undefined): boolean {
+  if (!slug) return false;
+  const clean = slug.trim();
+  return (
+    clean === "kids-bundle" ||
+    clean === "1m-reels-bundle" ||
+    clean === "sample-product"
+  );
+}
 
 /**
  * Live ads product. Served ONLY at /store/product.
@@ -22,10 +40,9 @@ export const LIVE_ADS_PRODUCT_PATH = "/store/product";
 
 /**
  * Old slugs saved on past purchases before the store was renamed.
- * Those buyers must keep getting the live ads product's file. Never remove.
- * These are NOT pages and are never used for new orders.
+ * Notice: "pan-india-leads-2026" belongs to Growscale and must NEVER be listed here.
  */
-const LEGACY_LIVE_PURCHASE_SLUGS = ["poster-pack", "pan-india-leads-2026"];
+const LEGACY_LIVE_PURCHASE_SLUGS = ["poster-pack"];
 
 /**
  * NEXT_PUBLIC_STORE_PRICE_INR overrides the price of the live ads product ONLY.
@@ -47,15 +64,11 @@ function withLivePriceOverride(product: StoreProductConfig): StoreProductConfig 
 }
 
 /**
- * ADD NEW PRODUCTS HERE.
- * 1. Import the product file at the top of this file.
- * 2. Add it to this list.
+ * ByePanda registered products ONLY.
  */
 const REGISTERED_PRODUCTS: StoreProductConfig[] = [
-  panIndiaLeads2026,
-  usaLeads,
-  hniDatabase,
   sampleProduct,
+  panIndiaLeads2026,
 ];
 
 export const storeProducts: StoreProductConfig[] =
@@ -73,7 +86,6 @@ if (productsBySlug.size !== storeProducts.length) {
 export const storeProduct: StoreProductConfig = (() => {
   const live =
     productsBySlug.get(LIVE_ADS_PRODUCT_SLUG) ??
-    productsBySlug.get("pan-india-leads-2026") ??
     storeProducts[0] ??
     panIndiaLeads2026;
   if (!live) {
@@ -105,13 +117,20 @@ export function getStoreProductBySlug(
 
 /**
  * Product for a saved purchase row (download + email).
- * Empty or legacy slug = live ads product. Unknown slug = null.
+ * Strictly checks that the slug is a verified ByePanda product.
+ * Returns null if the slug is unknown, missing, or belongs to another store.
  */
 export function getStoreProductForPurchaseSlug(
   slug: string | null | undefined,
 ): StoreProductConfig | null {
-  const trimmed = slug?.trim() ?? "";
-  if (!trimmed || LEGACY_LIVE_PURCHASE_SLUGS.includes(trimmed)) {
+  if (!slug) {
+    return null;
+  }
+  const trimmed = slug.trim();
+  if (!trimmed || !isByePandaProductSlug(trimmed)) {
+    return null;
+  }
+  if (LEGACY_LIVE_PURCHASE_SLUGS.includes(trimmed)) {
     return storeProduct;
   }
   return getStoreProductBySlug(trimmed);

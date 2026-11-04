@@ -9,9 +9,13 @@ import {
 } from "@/lib/meta/store-purchase-meta";
 import {
   getMetaAttributionFromPurchase,
+  getStorePurchaseByOrderId,
   markStorePurchasePaid,
 } from "@/lib/store/purchases";
-import { getStoreProductForPurchaseSlug } from "@/lib/store/products";
+import {
+  getStoreProductForPurchaseSlug,
+  isByePandaProductSlug,
+} from "@/lib/store/products";
 import { fetchRazorpayPaymentCustomer } from "@/lib/store/razorpay-customer";
 import { sendStorePurchaseEmail } from "@/lib/store/send-purchase-email";
 import { verifyRazorpayWebhookSignature } from "@/lib/store/verify";
@@ -61,13 +65,33 @@ export async function POST(request: Request) {
       const paymentId = payment.id;
       const orderId = payment.order_id;
 
-      // In multi-store Razorpay accounts, verify the order belongs to this store
-      const noteSlug = payment.notes?.product_slug?.trim();
-      if (noteSlug && !getStoreProductForPurchaseSlug(noteSlug)) {
+      // 1. If store is explicitly tagged and not byepanda, ignore immediately.
+      const orderStore = payment.notes?.store?.trim()?.toLowerCase();
+      if (orderStore && orderStore !== "byepanda") {
         return NextResponse.json({
           ok: true,
-          ignored: "Order belongs to another store.",
+          ignored: `Order belongs to another store: ${orderStore}`,
         });
+      }
+
+      // 2. In multi-store Razorpay accounts, manually verify the product belongs to ByePanda store
+      const noteSlug = payment.notes?.product_slug?.trim();
+      if (noteSlug && !isByePandaProductSlug(noteSlug)) {
+        return NextResponse.json({
+          ok: true,
+          ignored: `Product "${noteSlug}" does not belong to ByePanda store.`,
+        });
+      }
+
+      // 3. If noteSlug is missing, check if this order was registered in ByePanda database
+      if (!noteSlug) {
+        const existing = await getStorePurchaseByOrderId(orderId);
+        if (!existing || !isByePandaProductSlug(existing.product_slug)) {
+          return NextResponse.json({
+            ok: true,
+            ignored: "Order does not belong to ByePanda store.",
+          });
+        }
       }
 
       // Fetch full payment for name + any fields webhook payload omitted.
@@ -81,10 +105,10 @@ export async function POST(request: Request) {
         customerName: razorpayCustomer.name,
       });
 
-      if (!getStoreProductForPurchaseSlug(purchase.product_slug)) {
+      if (!isByePandaProductSlug(purchase.product_slug)) {
         return NextResponse.json({
           ok: true,
-          ignored: "Order belongs to another store.",
+          ignored: `Product "${purchase.product_slug}" does not belong to ByePanda store.`,
         });
       }
 
@@ -130,6 +154,9 @@ export async function POST(request: Request) {
 
       // Ack Razorpay fast; finish Meta + email in background (same as Dodo).
       after(async () => {
+        if (!isByePandaProductSlug(purchase.product_slug)) {
+          return;
+        }
         await Promise.all([
           sendPurchaseEvent({
             paymentId,

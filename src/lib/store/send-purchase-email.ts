@@ -10,6 +10,7 @@ import {
 } from "@/lib/store/download";
 import {
   getStoreProductForPurchaseSlug,
+  isByePandaProductSlug,
   storeProduct,
 } from "@/lib/store/products";
 
@@ -112,21 +113,45 @@ export async function sendStorePurchaseEmail(
     return;
   }
 
+  // Manually check that the product exists in ByePanda store before sending email
+  if (!isByePandaProductSlug(input.productSlug)) {
+    console.info(
+      JSON.stringify({
+        level: "info",
+        route: "store/purchase-email",
+        message: `Purchase email skipped — product "${input.productSlug}" does not belong to ByePanda store`,
+        paymentId,
+        timestamp: new Date().toISOString(),
+      }),
+    );
+    return;
+  }
+
   const product = getStoreProductForPurchaseSlug(input.productSlug);
+  if (!product) {
+    console.warn(
+      JSON.stringify({
+        level: "warn",
+        route: "store/purchase-email",
+        message: `Purchase email skipped — could not find product config for slug "${input.productSlug}" in ByePanda store`,
+        paymentId,
+        timestamp: new Date().toISOString(),
+      }),
+    );
+    return;
+  }
+
   // India (and others): only use per-product driveDownloadUrl. No env fallback.
-  const driveUrl = product?.driveDownloadUrl?.trim() || "";
+  const driveUrl = product.driveDownloadUrl?.trim() || "";
   const productTitle =
-    input.productTitle?.trim() || product?.title || storeProduct.title;
+    input.productTitle?.trim() || product.title;
   const priceLabel = formatMoney(input.value, input.currency);
   const firstName =
     input.customerName?.trim().split(/\s+/)[0] ||
     toEmail.split("@")[0] ||
     "there";
 
-  const isKidsBundle =
-    !input.productSlug ||
-    input.productSlug === "kids-bundle" ||
-    input.productSlug === "pan-india-leads-2026";
+  const isKidsBundle = input.productSlug === "kids-bundle";
 
   const textLines = isKidsBundle
     ? [
@@ -217,20 +242,6 @@ ${bundleDescriptionHtml}
   );
   const toDomain = toEmail.includes("@") ? toEmail.split("@")[1] : "unknown";
 
-  const isKnownProduct =
-    getStoreProductForPurchaseSlug(input.productSlug) !== null;
-  if (input.productSlug && !isKnownProduct) {
-    console.info(
-      JSON.stringify({
-        level: "info",
-        route: "store/purchase-email",
-        message: `Purchase email skipped for non-store product: ${input.productSlug}`,
-        paymentId,
-        timestamp: new Date().toISOString(),
-      }),
-    );
-    return;
-  }
 
   const subject = isKidsBundle
     ? `Your Kids Learning Bundle is ready! — ${productTitle}`
