@@ -2783,26 +2783,8 @@
 }
 
 /* ============================================================
-   Sample Reels Infinite Auto-Moving Carousel Track
+   Sample Reels — marquee CSS removed; now uses poster grid + modal
    ============================================================ */
-@keyframes sampleReelsScroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.sample-reels-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 0.85rem;
-  animation: sampleReelsScroll 34s linear infinite;
-  will-change: transform;
-  user-select: none;
-  -webkit-user-select: none;
-}
 
 
 
