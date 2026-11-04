@@ -200,7 +200,7 @@ export const sampleProduct: StoreProductConfig = {
 
   // ---------- Final CTA ----------
   finalCta: {
-    headline: "Take Action Now, Don't Regret Again.",
+    headline: "Take Action Now, Don't Regret Later.",
     body: "Next time the price will be higher — don't miss this opportunity.",
   },
 
