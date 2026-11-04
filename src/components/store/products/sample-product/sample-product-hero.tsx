@@ -390,7 +390,7 @@ export function SampleProductHero({ product }: Props) {
             ) : null}
           </div>
           <div className="store-sticky-buy-actions">
-            <p className="text-center lg:text-left !text-sm sm:!text-[15px] lg:!text-base font-black tracking-tight text-slate-900 leading-tight">
+            <p className="text-center lg:text-left !text-base sm:!text-lg lg:!text-xl font-black tracking-tight text-slate-900 leading-tight">
               <span>Offer Ends Today. </span>
               <span className="text-red-600 font-black">HURRY UP!</span>
             </p>
