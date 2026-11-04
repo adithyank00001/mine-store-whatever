@@ -25,7 +25,7 @@ export const sampleProduct: StoreProductConfig = {
   driveDownloadUrl: null,
 
   // ---------- Price (Razorpay charges this) ----------
-  price: 99,
+  price: 1,
   compareAtPrice: 4999,
   currency: "INR",
   currencySymbol: "₹",
@@ -185,7 +185,7 @@ export const sampleProduct: StoreProductConfig = {
     {
       question: "Is this a subscription?",
       answer:
-        "No. ₹99 once - and the weekly new reels are included free, forever.",
+        "No. ₹1 once - and the weekly new reels are included free, forever.",
     },
     {
       question: "Do I need any edits to upload?",
@@ -205,8 +205,8 @@ export const sampleProduct: StoreProductConfig = {
   },
 
   // ---------- Buttons ----------
-  buyButtonLabel: "Download Now ₹99 ₹4,999",
-  stickyBuyButtonLabel: "Download Now ₹99 ₹4,999",
+  buyButtonLabel: "Download Now ₹1 ₹4,999",
+  stickyBuyButtonLabel: "Download Now ₹1 ₹4,999",
   secondaryButtonLabel: "Add to cart",
   buyUrl: "#buy",
   footerNote: "Pay securely with Razorpay · Instant Google Drive access after payment",

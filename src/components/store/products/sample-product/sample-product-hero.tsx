@@ -295,7 +295,9 @@ export function SampleProductHero({ product }: Props) {
                 ) : (
                   <span className="inline-flex items-center gap-2">
                     <span>Download Now</span>
-                    <span className="font-black text-white">₹99</span>
+                    <span className="font-black text-white">
+                      {product.currencySymbol}{product.price}
+                    </span>
                     <del
                       className="line-through decoration-white text-white/80 text-xs sm:text-sm font-bold"
                       style={{
@@ -405,7 +407,9 @@ export function SampleProductHero({ product }: Props) {
               ) : (
                 <span className="inline-flex items-center gap-2">
                   <span>Download Now</span>
-                  <span className="font-black text-white">₹99</span>
+                  <span className="font-black text-white">
+                    {product.currencySymbol}{product.price}
+                  </span>
                   <del
                     className="line-through decoration-white text-white/80 text-xs sm:text-sm font-bold"
                     style={{
