@@ -253,6 +253,11 @@ export function SampleProductHero({ product }: Props) {
 
           {/* Pricing & Offer Countdown */}
           <div className="mt-7 flex flex-col items-center justify-center text-center">
+            <p className="mb-2 sm:mb-2.5 text-center text-sm sm:text-base font-black tracking-tight text-slate-900 leading-tight">
+              <span>Offer Ends Today. </span>
+              <span className="text-red-600 font-black">HURRY UP!</span>
+            </p>
+
             {/* Price Row: Current Price + Strikethrough Original */}
             <div className="flex items-baseline justify-center gap-3 sm:gap-4">
               <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 font-sans">

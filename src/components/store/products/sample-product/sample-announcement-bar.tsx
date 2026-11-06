@@ -18,10 +18,10 @@ export function SampleAnnouncementBar() {
       <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 font-bold leading-snug">
         <span>
           🎉 Launch offer{" "}
-          <span className="text-red-500 font-black">Expiring</span> in 24 Hours.
+          <span className="text-red-500 font-black">Expiring</span> Today.
         </span>
         <span>
-          Instant Google Drive Access,{" "}
+          Get Instant Access Now,{" "}
           <span className="text-red-500 font-black">Hurry Up!</span>
         </span>
       </div>

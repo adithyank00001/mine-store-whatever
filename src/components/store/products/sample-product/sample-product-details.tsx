@@ -326,7 +326,7 @@ export function SampleProductDetails({
                 loading="lazy"
                 className="w-full h-auto rounded-xl sm:rounded-2xl border border-black shadow-xs"
               />
-              <p className="mt-2 text-center text-xs sm:text-sm font-extrabold text-emerald-600">
+              <p className="mt-2.5 sm:mt-3 text-center text-base sm:text-lg lg:text-xl font-black text-emerald-600 tracking-tight">
                 {item.caption}
               </p>
             </div>
