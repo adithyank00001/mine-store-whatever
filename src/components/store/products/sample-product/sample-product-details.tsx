@@ -467,7 +467,7 @@ export function SampleProductDetails({
               buttonClassName="min-h-[3.25rem] text-sm sm:text-base lg:text-lg font-black tracking-wide uppercase px-4 sm:px-6"
             >
               <span className="inline-flex items-center gap-2">
-                <span>Get Instant Drive Access</span>
+                <span>Get Instant Access</span>
                 <span className="font-black text-white">
                   {product.currencySymbol}{product.price}
                 </span>

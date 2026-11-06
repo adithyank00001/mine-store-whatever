@@ -205,8 +205,8 @@ export const sampleProduct: StoreProductConfig = {
   },
 
   // ---------- Buttons ----------
-  buyButtonLabel: "Get Instant Drive Access ₹99 ₹4,999",
-  stickyBuyButtonLabel: "Get Instant Drive Access ₹99 ₹4,999",
+  buyButtonLabel: "Get Instant Access ₹99 ₹4,999",
+  stickyBuyButtonLabel: "Get Instant Access ₹99 ₹4,999",
   secondaryButtonLabel: "Add to cart",
   buyUrl: "#buy",
   footerNote: "Pay securely with Razorpay · Instant Google Drive access after payment",

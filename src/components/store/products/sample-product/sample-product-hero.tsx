@@ -298,7 +298,7 @@ export function SampleProductHero({ product }: Props) {
                   "Opening checkout…"
                 ) : (
                   <span className="inline-flex items-center gap-2">
-                    <span>Get Instant Drive Access</span>
+                    <span>Get Instant Access</span>
                     <span className="font-black text-white">
                       {product.currencySymbol}{product.price}
                     </span>
@@ -410,7 +410,7 @@ export function SampleProductHero({ product }: Props) {
                 "Opening checkout…"
               ) : (
                 <span className="inline-flex items-center gap-2">
-                  <span>Get Instant Drive Access</span>
+                  <span>Get Instant Access</span>
                   <span className="font-black text-white">
                     {product.currencySymbol}{product.price}
                   </span>
