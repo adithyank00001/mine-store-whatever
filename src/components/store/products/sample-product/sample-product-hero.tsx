@@ -6,7 +6,6 @@ import { Check, CircleCheck, Lock, ShieldCheck, ZoomIn } from "lucide-react";
 
 import { ProductImage } from "@/components/store/product-image";
 import { ProductStars } from "@/components/store/product-stars";
-import { OfferCountdown } from "@/components/store/shared/offer-countdown";
 import { RazorpayLogo } from "@/components/store/shared/razorpay-logo";
 import { StoreBuyCtaButton } from "@/components/store/store-buy-cta-button";
 import { useProductCheckout } from "@/lib/store/hooks/use-product-checkout";
@@ -138,7 +137,7 @@ export function SampleProductHero({ product }: Props) {
             {[
               "Lifetime Access",
               "One-Time Payment",
-              "Instant Access",
+              "Instant Google Drive Access",
               "No Watermark",
             ].map((item, idx, arr) => (
               <span key={item} className="inline-flex items-center gap-1.5">
@@ -283,8 +282,6 @@ export function SampleProductHero({ product }: Props) {
                 </span>
               </div>
             ) : null}
-
-            <OfferCountdown />
           </div>
 
           {/* Primary CTA Button & Trust Badges */}
@@ -301,7 +298,7 @@ export function SampleProductHero({ product }: Props) {
                   "Opening checkout…"
                 ) : (
                   <span className="inline-flex items-center gap-2">
-                    <span>Download Now</span>
+                    <span>Get Instant Drive Access</span>
                     <span className="font-black text-white">
                       {product.currencySymbol}{product.price}
                     </span>
@@ -350,9 +347,9 @@ export function SampleProductHero({ product }: Props) {
               <div className="rounded-xl border border-slate-200/90 bg-white/90 p-2.5 sm:p-3 shadow-xs flex flex-col items-center justify-center gap-0.5">
                 <span className="text-base sm:text-lg">⚡</span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-800 leading-tight">
-                  Instant Access
+                  Instant Drive Access
                 </span>
-                <span className="text-[10px] text-slate-500 hidden sm:inline">Google Drive</span>
+                <span className="text-[10px] text-slate-500">Google Drive Link</span>
               </div>
               <div className="rounded-xl border border-slate-200/90 bg-white/90 p-2.5 sm:p-3 shadow-xs flex flex-col items-center justify-center gap-0.5">
                 <span className="text-base sm:text-lg">🔒</span>
@@ -413,7 +410,7 @@ export function SampleProductHero({ product }: Props) {
                 "Opening checkout…"
               ) : (
                 <span className="inline-flex items-center gap-2">
-                  <span>Download Now</span>
+                  <span>Get Instant Drive Access</span>
                   <span className="font-black text-white">
                     {product.currencySymbol}{product.price}
                   </span>

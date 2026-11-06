@@ -21,7 +21,7 @@ export function SampleAnnouncementBar() {
           <span className="text-red-500 font-black">Expiring</span> in 24 Hours.
         </span>
         <span>
-          Get Instant Access Now,{" "}
+          Instant Google Drive Access,{" "}
           <span className="text-red-500 font-black">Hurry Up!</span>
         </span>
       </div>

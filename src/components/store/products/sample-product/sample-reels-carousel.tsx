@@ -11,12 +11,6 @@ interface SampleReelItem {
 
 const SAMPLE_REELS: SampleReelItem[] = [
   {
-    id: "reel-1",
-    title: "Anime",
-    category: "Anime",
-    rawUrl: "https://res.cloudinary.com/ntv0bhpy/video/upload/v1793696999/ERideBay-2008.mp4",
-  },
-  {
     id: "reel-2",
     title: "Animal Stories",
     category: "Animal Stories",

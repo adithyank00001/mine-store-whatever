@@ -267,7 +267,7 @@ export function SampleProductDetails({
                 <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-emerald-800 mt-0.5">
                   <Check className="size-3.5" strokeWidth={3} />
                 </span>
-                <span>Instantly access 1,000,000+ high-quality, viral-proven reels.</span>
+                <span>Instant Google Drive access to 1,000,000+ high-quality, viral-proven reels.</span>
               </li>
               <li className="flex items-start gap-3 text-sm sm:text-[15px] font-semibold text-slate-900 leading-snug">
                 <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-emerald-800 mt-0.5">
@@ -303,12 +303,8 @@ export function SampleProductDetails({
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
           {[
-            {
-              imageUrl: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1793697962/97fd4b57-89f8-42f1-9ffe-c74db89d4988.png",
-              caption: "Earned $1,075 from YouTube",
-            },
             {
               imageUrl: "https://res.cloudinary.com/ntv0bhpy/image/upload/v1793697208/e5d19b4c-8986-48ed-a1d0-30246ce86a88.png",
               caption: "Earned $547 from Facebook",
@@ -454,7 +450,7 @@ export function SampleProductDetails({
             7-Days Money Back Guarantee
           </h3>
           <p className="mt-1 text-sm text-[var(--store-muted)]">
-            Access link is generated on your screen immediately upon successful checkout and also
+            Instant Google Drive access link is generated on your screen immediately upon successful checkout and also
             emailed to you for permanent access. If you don&apos;t get access, you will receive a
             full refund — so there is no risk for you.
           </p>
@@ -471,7 +467,7 @@ export function SampleProductDetails({
               buttonClassName="min-h-[3.25rem] text-sm sm:text-base lg:text-lg font-black tracking-wide uppercase px-4 sm:px-6"
             >
               <span className="inline-flex items-center gap-2">
-                <span>Download Now</span>
+                <span>Get Instant Drive Access</span>
                 <span className="font-black text-white">
                   {product.currencySymbol}{product.price}
                 </span>

@@ -39,7 +39,7 @@ export const sampleProduct: StoreProductConfig = {
     "1 Million+ Ready-To-Post HD Reels & Videos across trending niches with lifetime access.",
   rating: 4.8,
   reviewCount: 1000,
-  socialProofTag: "🔥 50+ downloaded yesterday!",
+  socialProofTag: "🔥 50+ got Drive access yesterday!",
   highlights: [
     "1,000,000+ Reels videos",
     "Weekly updated video - FREE",
@@ -47,7 +47,7 @@ export const sampleProduct: StoreProductConfig = {
     "HD-quality video content",
     "Faceless content suitable for short-form platforms",
     "Ready-to-use digital content",
-    "Instant Digital download/access",
+    "Instant Google Drive access",
     "Organized niche-based content collection",
     "Suitable for both beginners and experienced creators",
     {
@@ -81,7 +81,7 @@ export const sampleProduct: StoreProductConfig = {
   trustItems: [
     {
       title: "Instant Google Drive Access",
-      description: "Direct download access link generated on screen & emailed instantly",
+      description: "Direct Drive link access generated on screen & emailed instantly",
     },
     {
       title: "Secure Razorpay Checkout",
@@ -161,7 +161,7 @@ export const sampleProduct: StoreProductConfig = {
   // ---------- How it works ----------
   howItWorks: [
     "Complete Secured Payment",
-    "Get Instant Access",
+    "Instant Google Drive Access",
     "Launch & Start Scaling",
   ],
 
@@ -170,7 +170,7 @@ export const sampleProduct: StoreProductConfig = {
     {
       question: "How do I get the reels?",
       answer:
-        "Right after payment you're taken to your download page with your Google Drive access. We also WhatsApp you the link.",
+        "Right after payment you receive your instant Google Drive link on screen. We also WhatsApp and email you the Drive link.",
     },
     {
       question: "Are these reels really copyright-free?",
@@ -189,12 +189,12 @@ export const sampleProduct: StoreProductConfig = {
     },
     {
       question: "Do I need any edits to upload?",
-      answer: "No, you don’t need to edit anything, just Download & Upload.",
+      answer: "No, you don’t need to edit anything — just open your Google Drive link, download the reels & post.",
     },
     {
       question: "In What Format Will I Receive the Product?",
       answer:
-        "You will receive access to the product through Google Drive, where you can download the videos anytime. All videos are provided in MP4 format.",
+        "You will receive instant Google Drive link access, where you can stream or download the videos anytime. All videos are provided in MP4 format.",
     },
   ],
 
@@ -205,8 +205,8 @@ export const sampleProduct: StoreProductConfig = {
   },
 
   // ---------- Buttons ----------
-  buyButtonLabel: "Download Now ₹99 ₹4,999",
-  stickyBuyButtonLabel: "Download Now ₹99 ₹4,999",
+  buyButtonLabel: "Get Instant Drive Access ₹99 ₹4,999",
+  stickyBuyButtonLabel: "Get Instant Drive Access ₹99 ₹4,999",
   secondaryButtonLabel: "Add to cart",
   buyUrl: "#buy",
   footerNote: "Pay securely with Razorpay · Instant Google Drive access after payment",
