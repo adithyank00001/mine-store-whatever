@@ -65,7 +65,7 @@ export function getMetaPageViewKey(
   pathname: string,
   search: string | { toString(): string },
 ): string {
-  const path = pathname || "/";
+  const path = normalizePath(pathname);
   const raw = typeof search === "string" ? search : search.toString();
   const query = raw.startsWith("?") ? raw.slice(1) : raw;
   return query ? `${path}?${query}` : path;

@@ -128,9 +128,6 @@ export function MetaPixel() {
         strategy="afterInteractive"
         onLoad={() => {
           try {
-            if (typeof window.fbq === "function" && FB_PIXEL_ID) {
-              window.fbq("set", "autoConfig", false, FB_PIXEL_ID);
-            }
             ensureBrowserFbcCookie();
           } catch {
             // ignore

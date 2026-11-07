@@ -87,7 +87,6 @@ document.cookie="_fbc="+fbc+"; Path=/; Max-Age=7776000; SameSite=Lax"+secure;
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];}(window);
-fbq('set','autoConfig',false,'${pixelId}');
 fbq('init','${pixelId}');
 fbq('track','PageView',customData,{eventID:eventId});
 }catch(e){}})();`;

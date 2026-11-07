@@ -13,7 +13,12 @@ import { storeProduct } from "@/lib/store/product-content";
 import {
   getPaidPurchaseByDownloadToken,
   getPaidPurchaseByPaymentId,
+  getMetaAttributionFromPurchase,
 } from "@/lib/store/purchases";
+import {
+  metaAttributionFromMetadata,
+  type MetaAttribution,
+} from "@/lib/meta/attribution";
 import { sendStorePurchaseEmail } from "@/lib/store/send-purchase-email";
 import { verifyStoreDodoPayment } from "@/lib/store/verify-dodo-payment";
 
@@ -45,6 +50,7 @@ type StoreSuccessView = {
   downloadHref: string;
   /** From store_purchases.paid_at. Null for legacy Dodo success (keep backup send). */
   paidAt: string | null;
+  attribution?: MetaAttribution;
 };
 
 function isPaidRecently(paidAt: string | null): boolean {
@@ -66,6 +72,9 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
     const purchase = await getPaidPurchaseByDownloadToken(token);
     if (purchase) {
       const paymentId = purchase.razorpay_payment_id ?? paymentIdParam;
+      const storedAttribution = metaAttributionFromMetadata(
+        getMetaAttributionFromPurchase(purchase),
+      );
       verification = {
         ok: true,
         paymentId,
@@ -80,6 +89,7 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
         quantity: purchase.quantity,
         downloadHref: `/api/store/download?token=${encodeURIComponent(token)}`,
         paidAt: purchase.paid_at ?? null,
+        attribution: storedAttribution,
       };
     }
   }
@@ -87,6 +97,9 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
   if (!verification.ok && paymentIdParam) {
     const purchase = await getPaidPurchaseByPaymentId(paymentIdParam);
     if (purchase?.download_token) {
+      const storedAttribution = metaAttributionFromMetadata(
+        getMetaAttributionFromPurchase(purchase),
+      );
       verification = {
         ok: true,
         paymentId: purchase.razorpay_payment_id ?? paymentIdParam,
@@ -101,6 +114,7 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
         quantity: purchase.quantity,
         downloadHref: `/api/store/download?token=${encodeURIComponent(purchase.download_token)}`,
         paidAt: purchase.paid_at ?? null,
+        attribution: storedAttribution,
       };
     } else {
       // Legacy Dodo success links still work.
@@ -153,6 +167,7 @@ export default async function StoreSuccessPage({ searchParams }: Props) {
         }),
         eventSourceUrl: `${origin}/store/success`,
         requestHeaders,
+        attribution: verification.attribution,
         customData: buildStorePurchaseCustomData({
           paymentId: verification.paymentId,
           orderId: verification.orderId,

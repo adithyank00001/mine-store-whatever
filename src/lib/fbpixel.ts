@@ -99,9 +99,7 @@ export function setPixelUserData(data: {
   }
 
   try {
-    if (FB_PIXEL_ID) {
-      window.fbq?.("init", FB_PIXEL_ID, payload);
-    }
+    window.fbq?.("set", "userData", payload);
   } catch {
     // Pixel must never break checkout.
   }

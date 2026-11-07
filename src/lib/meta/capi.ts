@@ -233,6 +233,7 @@ export async function sendPurchaseEventFromPageRequest(input: {
   eventSourceUrl: string;
   requestHeaders: Headers;
   customData?: Record<string, unknown>;
+  attribution?: MetaAttribution;
 }): Promise<void> {
   const paymentId = input.paymentId.trim();
   if (!paymentId) {
@@ -243,9 +244,15 @@ export async function sendPurchaseEventFromPageRequest(input: {
   const request = new Request(origin, {
     headers: input.requestHeaders,
   });
-  const attribution = getMetaAttributionFromRequest(request, {
+  const fromRequest = getMetaAttributionFromRequest(request, {
     eventSourceUrl: input.eventSourceUrl,
   });
+  const attribution: MetaAttribution = {
+    fbp: input.attribution?.fbp ?? fromRequest.fbp,
+    fbc: input.attribution?.fbc ?? fromRequest.fbc,
+    clientIp: input.attribution?.clientIp ?? fromRequest.clientIp,
+    userAgent: input.attribution?.userAgent ?? fromRequest.userAgent,
+  };
 
   await sendPurchaseEvent({
     paymentId,
