@@ -1,4 +1,6 @@
-import { KidsProductPage } from "@/components/store/kids/kids-product-page";
+// Preserved original product page component (kept intact, cleanly disconnected)
+// import { KidsProductPage } from "@/components/store/kids/kids-product-page";
+import { KidsKoshaPage } from "@/components/store/products/kids-kosha/kids-kosha-page";
 import { SampleProductPage } from "@/components/store/products/sample-product/sample-product-page";
 import { DefaultProductPage } from "@/components/store/templates/default-product/default-product-page";
 import type { StoreProductConfig } from "@/lib/store/product-content";
@@ -25,7 +27,7 @@ export function ProductPageDispatcher({
 }) {
   switch (slug) {
     case "kids-bundle":
-      return <KidsProductPage product={product} />;
+      return <KidsKoshaPage product={product} />;
     case "1m-reels-bundle":
     case "sample-product":
       return <SampleProductPage product={product} />;
